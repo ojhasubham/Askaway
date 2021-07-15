@@ -1,0 +1,169 @@
+<!-- rateYo CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+<!-- rateYo JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <%- partial('./searchProviderSection.ejs') %>
+  <div class="content"></div>
+  <!--end::Subheader-->
+  <% if(providers.length > 0){ %>
+  
+  <% providers.map(item => { %>
+  <div class="d-flex flex-column-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card card-custom gutter-b card-stretch">
+            <div class="card-body pt-4 d-flex flex-column justify-content-between">
+              <div class="d-flex align-items-center mb-7">
+                <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                  <div class="symbol symbol-lg-75">
+                    <img alt="profile picture"
+                      src="<%= item.profilePic && '/api/file/profile-media?filename='+item.profilePic || '/media/users/blank.png'%>">
+                  </div>
+                  <div class="symbol symbol-lg-75 symbol-primary d-none">
+                    <span class="font-size-h3 font-weight-boldest">JM</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-column">
+                  <span class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">
+                    <%= item.first_name %> <%= item.last_name %></span>
+                  <span class="text-muted font-weight-bold"><%= item.summary %></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="d-flex justify-content-between align-items-center my-1">
+                    <span class="text-dark-75 font-weight-bolder mr-2">Rating:</span>
+                    <% itemId = item.id + Math.floor(Math.random()*10000) %>
+                    <div class="d-flex align-items-center">
+                      <div>
+                        <div id="<%= itemId || 'item' %>"></div>
+                      </div>
+                      <div>
+                        <span class="text-muted text-hover-primary"><%= item.ratingsAvg %></span>
+                      </div>
+                    </div>
+                    <script>
+                      $("#<%= itemId || 'item' %>").rateYo({
+                        rating: <%= item.ratingsAvg || 0 %>,
+                        readOnly: true,
+                        starWidth: "15px",
+                        spacing: "8px"
+                      });
+                    </script>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-cente my-1">
+                    <span class="text-dark-75 font-weight-bolder mr-2">Rating Count:</span>
+                    <a href="<%= item.ratingsCount > 0 && '/provider/' + item.id + '/ratings' || '#' %>"
+                      class="text-muted text-hover-primary"><%= item.ratingsCount %></a>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6" id="collapse<%= itemId || 'item' %>">
+                  <div class="d-flex justify-content-between align-items-cente my-1">
+                    <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
+                    <span class="text-muted text-hover-primary font-weight-bold"> <%= item.email %></span>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-dark-75 font-weight-bolder mr-2">Category:</span>
+                    <span class="text-muted font-weight-bold">
+                      <%= item.cat && item.cat.map(item => item.name).join(", ") || "" %></span>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-cente my-1">
+                    <span class="text-dark-75 font-weight-bolder mr-2" style="min-width: 90px">Linked In URL:</span>
+                    <a href="<%= item.linkedInUrl %>" target="_blank"
+                      class="wrap-line-1 text-muted text-hover-primary"><%= item.linkedInUrl %></a>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-dark-75 font-weight-bolder mr-2" style="min-width: 60px">Blog URL:</span>
+                    <a href="<%= item.blogUrl %>" target="_blank"
+                      class="wrap-line-1 text-muted text-hover-primary"><%= item.blogUrl %></a>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-dark-75 font-weight-bolder mr-2">Website:</span>
+                    <a href="<%= item.website %>" target="_blank"
+                      class="wrap-line-1 text-muted text-hover-primary"><%= item.website %></a>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-dark-75 font-weight-bolder mr-2">keywords:</span>
+                    <span class="text-muted font-weight-bold"><%= item.keywords %></span>
+                  </div>
+                </div>
+                <div class="col-md-4 mt-2 d-flex align-items-end" style="margin-left: auto;">
+                  <button
+                    data-id = "<%= item.id %>"
+                    class="contact-btn btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4 mr-2"
+                    value="<%= item.email %>">
+                    Contact
+                  </button>
+                  <a href="/schedule-meeting/<%= item.id %>" value="<%= item.id %>"
+                    class="btn btn-block btn-sm btn-light-primary font-weight-bolder text-uppercase py-4">Schedule
+                    Meeting</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+  <% } else { %>
+  <h3 class="ml-5">
+    No results found for : <%= providerId %>
+  </h3>
+  <% } %>
+</div>
+<!--end::Content-->
+<!--begin::New Message Modal-->
+<div class="modal fade" id="newMessageModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Contact</h5>
+        <button type="button" class="close" id="closeNewMessage" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="new_message_form">
+          <p class="text-info mb-4">Please fill-up the following details.</p>
+          <div class="form-group">
+            <label for="message" class="col-form-label">Message Description</label>
+            <textarea class="form-control" name="message"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="btn btn-block btn-sm btn-light-primary font-weight-bolder text-uppercase py-4 w-30 mr-39" id="schedule_metting"> Schedule Meeting </div>
+        <div id="fileList"></div>
+        <div class="mr-3">
+          <input type="file" class="d-none" id="attachmentModal" data-max-size="50000000" multiple>
+          <label for="attachmentModal">
+            <div>
+              <i class="flaticon-attachment icon-lg"></i>
+            </div>
+          </label>
+          <div class="progress">
+            <div class="progress-bar"></div>
+          </div>
+        </input>
+        </div>
+        <button type="button" id="closemodal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="new_message_submit" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end::New Message Modal-->
+<!--begin::Page Scripts(used by this page)-->
+<script>
+  _loader.hide();
+</script>
+<script src="/js/pages/custom/provider/searchProvider.js"></script>
+<!--end::Page Scripts-->

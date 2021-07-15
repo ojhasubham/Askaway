@@ -1,0 +1,228 @@
+<!--begin::Content-->
+<div class="content"></div>
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <!--begin::Entry-->
+  <div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+      <!--begin::Dashboard-->
+      <!--begin::Row-->
+      <div class="row">
+        <div class="col-xl-12">
+          <!--begin::Advance Table Widget 10-->
+          <div class="card card-custom gutter-b card-stretch">
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+              <div class="card-title align-items-start flex-column">
+                <span>
+                  Provider : <span
+                    class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary schedule_meeting_provider_name"></span>
+                </span>
+                <span
+                  class="schedule_meeting_provider_email text-muted font-weight-normal font-size-h6 text-hover-primary"></span>
+              </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body">
+              <!--begin::Calendar-->
+              <div id="meeting_schedule_calendar">
+                <!-- Meetings schedule calender elements will render here -->
+              </div>
+              <!--end::Calendar-->
+            </div>
+            <!--end::Body-->
+          </div>
+          <!--end::Advance Table Widget 10-->
+        </div>
+      </div>
+      <!--end::Row-->
+      <!--end::Dashboard-->
+    </div>
+    <!--end::Container-->
+  </div>
+  <!--end::Entry-->
+</div>
+<!--end::Content-->
+<!--begin::Schedule new meeting modal-->
+<div class="modal fade" id="schedule_meeting_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog  modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="schedule_meeting_title">Schedule Meeting</h5>
+        <button type="button" class="close" id="close_schedule_meeting_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>Provider Name : <span class="schedule_meeting_provider_name"></span></h6>
+        <h6>Hourly Rate : <span class="schedule_meeting_provider_rate"></span></h6>
+        <form id="schedule_meeting_form">
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label for="meeting topic" class="col-form-label">Meeting Topic</label>
+                <input type="text" class="form-control" name="topic">
+              </div>
+              <div class="col">
+                <label for="meeting agenda" class="col-form-label">Meeting Agenda</label>
+                <input type="text" class="form-control" name="agenda">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label for="meeting questions" class="col-form-label">Meeting Questions</label>
+                <textarea class="form-control" name="questions"></textarea>
+              </div>
+              <div class="col">
+                <label for="meeting start time" class="col-form-label">Date</label>
+                <input type='text' class="form-control" name="startTime" readonly />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label for="meeting start time" class="col-form-label">Time</label>
+                <input class="form-control" name="startTimeN" readonly placeholder="Select time" type="text" />
+              </div>
+              <div class="col">
+                <label for="meeting duration" class="col-form-label">Duration</label>
+                <select class="form-control" name="duration">
+                  <option value="" disabled selected>Select meeting duration</option>
+                  <option durId="30" value="30">30 Minutes</option>
+                  <option durId="60" value="60">1 Hour</option>
+                  <option durId="90" value="90">1 Hour 30 Minutes</option>
+                  <option durId="120" value="120">2 Hours</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="schedule_meeting_submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end::Schedule new meeting modal-->
+<!--begin::View meeting modal-->
+<div class="modal fade" id="meeting_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Scheduled Meeting</h5>
+        <button type="button" class="close" id="close_meeting_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+            <div class="d-flex justify-content-between align-items-center my-1">
+              <span class="text-dark-75 font-weight-bolder mr-2">Provider Name :</span>
+              <span class="schedule_meeting_provider_name text-muted text-hover-primary"></span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center my-1">
+              <span class="text-dark-75 font-weight-bolder mr-2">Meeting Topic :</span>
+              <span id="meeting_topic" class="text-muted text-hover-primary"></span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center my-1">
+              <span class="text-dark-75 font-weight-bolder mr-2">Date and Time :</span>
+              <span id="meeting_start_time" class="text-muted text-hover-primary"></span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center my-1">
+              <span class="text-dark-75 font-weight-bolder mr-2">Duration :</span>
+              <span id="meeting_duration" class="text-muted text-hover-primary"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <div class="d-flex justify-content-between align-items-center my-1">
+              <span class="text-dark-75 font-weight-bolder mr-2">Meeting Questions</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center my-1">
+              <pre id="meeting_questions" class="pre-word-wrap text-dark-75 font-weight-bolder"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="reschedule_meeting_btn" class="btn btn-primary">Reschedule</button>
+        <button type="button" id="delete_meeting_btn" class="btn btn-danger">Cancel Meeting</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end::View meeting modal-->
+<!--begin::Add payment/card detail modal-->
+<div class="modal fade" id="pay_detail_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="padding-bottom: 0px !important; padding-left: 28%;">
+        <!-- <h5 class="modal-title">Payment Details</h5> -->
+        <div>
+          <img src="../img/stripe/Stripe logo - slate_sm.png" alt="Stripe" height="85px;">
+        </div>
+        <button type="button" class="close" id="close_pay_detail_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-info mb-4">Please fill-up payment details first to schedule meeting.</p>
+        <form id="payment-form">
+          <div id="card-element">
+            <!-- Elements will create input elements here -->
+          </div>
+          <div id="card-errors" class="text-danger" role="alert"></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <img src="../img/stripe/powered_by_stripe.png" alt="Powered By Stripe" style="padding-right: 37%;" >
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="pay_details_submit" class="btn btn-primary">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end::Add payment/card detail modal-->
+
+<!--begin::Page Scripts(used by this page)-->
+<!-- CSS for full calendar -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css"
+  integrity="sha256-Lfe6+s5LEek8iiZ31nXhcSez0nmOxP+3ssquHMR3Alo=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.min.css"
+  integrity="sha256-saO3mkZVAcyqsfgsGMrmE7Cs/TLN1RgVykZ5dnnJKug=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css"
+  integrity="sha256-AVsv7CEpB2Y1F7ZjQf0WI8SaEDCycSk4vnDRt0L2MNQ=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.min.css"
+  integrity="sha256-DOWdbe6a1VwJwFpkimY6z5tW9mmrBNre2jZsAige5PE=" crossorigin="anonymous" />
+
+<!-- JS for full calendar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.js"
+  integrity="sha256-GBryZPfVv8G3K1Lu2QwcqQXAO4Szv4xlY4B/ftvyoMI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.js"
+  integrity="sha256-FT1eN+60LmWX0J8P25UuTjEEE0ZYvpC07nnU6oFKFuI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.min.js"
+  integrity="sha256-L9T+qE3Ms6Rsuxl+KwLST6a3R/2o6m33zB5mR2KyPjU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/interaction/main.min.js"
+  integrity="sha256-MUHmW5oHmLLsvmMWBO8gVtKYrjVwUSFau6pRXu8dtnA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.min.js"
+  integrity="sha256-q57s73NpMCTQ4ZXqb1X5bIywrICySeB6WvYxFGfz/PA=" crossorigin="anonymous"></script>
+
+<!-- JS for stripe -->
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+  const STRIPE_API_KEY = '<%= process.env.STRIPE_API_KEY %>';
+  const id = "<%= id %>";
+  let minTimeSlotDuration = 30;
+</script>
+<script src="/js/pages/custom/meeting/scheduleMeeting.js"></script>
+<!--end::Page Scripts-->

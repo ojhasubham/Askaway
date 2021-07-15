@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>New Sails App</title>
+
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <%/* If you want to discourage search engines from indexing this site, uncomment the following line: */%>
+  <%/* <meta name="robots" content="noindex"> */%>
+
+
+  <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+  <style>
+    html,
+    body{
+      height: 100%;
+    }
+    .main-container{
+      flex-flow: column;
+    }
+    @keyframes ldio-snwwl63mxg {
+      0% { transform: translate(-50%,-50%) rotate(0deg); }
+      100% { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+    .loader {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+      z-index: 9999;
+      display: none;
+      background: 50% 50% no-repeat rgb(249, 249, 249);
+    }
+    .loader .inner-div{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+      
+    .ldio-snwwl63mxg div {
+      position: absolute;
+      width: 73px;
+      height: 73px;
+      border: 9px solid #106fad;
+      border-top-color: transparent;
+      border-radius: 50%;
+    }
+    .ldio-snwwl63mxg div {
+      animation: ldio-snwwl63mxg 1s linear infinite;
+      top: 50px;
+      left: 50px
+    }
+    .loadingio-spinner-rolling-1sf8y50palm {
+      width: 58px;
+      height: 58px;
+      display: inline-block;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    .ldio-snwwl63mxg {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform: translateZ(0) scale(0.58);
+      backface-visibility: hidden;
+      transform-origin: 0 0; /* see note above */
+    }
+    .ldio-snwwl63mxg div { box-sizing: content-box; }
+  </style>
+  <link rel="stylesheet" href="/styles/importer.css">
+
+  <!-- bootstrap CSS -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/slate/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <!-- bootstrap js -->
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <!-- JS for moment and timezone -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"
+    integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.28/moment-timezone-with-data.min.js"
+    integrity="sha256-IWYg4uIC8/erItNXYvLtyYHioRi2zT1TFva8qaAU/ww=" crossorigin="anonymous"></script>
+  
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="main-container container h-100 d-flex" onload="loadingAjax('myDiv')">
+    <div class="loader">
+      <div class="inner-div">
+        <div class="loadingio-spinner-rolling-1sf8y50palm">
+          <div class="ldio-snwwl63mxg">
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row"> -->
+
+      <%- body %>
+
+
+    <!-- </div> -->
+  </div>
+
+
+  <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like React, Vue.js, Angular, Ember, and Backbone
+        require that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different view engine (handlebars, dust, pug/jade, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+  <!--TEMPLATES-->
+  
+  <!--TEMPLATES END-->
+
+
+  <!--
+        Server-side View Locals
+        ========================
+
+        Sometimes, it's convenient to get access to your server-side view locals from
+        client-side JavaScript.  This can improve page load times, remove the need for
+        extra AJAX requests, and make your client-side code easier to understand and
+        to maintain.  Sails provides a simple mechanism for accessing dynamic view
+        locals: the "exposeLocalsToBrowser()" view partial.
+
+        For more information on using this built-in feature, see:
+        https://sailsjs.com/docs/concepts/views/locals#?escaping-untrusted-data-using-exposelocalstobrowser
+
+    -->
+
+
+  <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+  
+  <!--SCRIPTS-->
+  <script src="/dependencies/sails.io.js"></script>
+  <script src="/js/html2pdf.bundle.min.js"></script>
+  <script src="/js/intlTelInput.js"></script>
+  <script src="/js/pages/custom/admin/admindashboardLayout.js"></script>
+  <script src="/js/pages/custom/admin/home.js"></script>
+  <script src="/js/pages/custom/admin/login-general.js"></script>
+  <script src="/js/pages/custom/admin/user.js"></script>
+  <script src="/js/pages/custom/chat/chat.js"></script>
+  <script src="/js/pages/custom/common/mainPageLayout.js"></script>
+  <script src="/js/pages/custom/dashboardLayout.js"></script>
+  <script src="/js/pages/custom/history/providerMeetingHistory.js"></script>
+  <script src="/js/pages/custom/history/studentMeetingHistory.js"></script>
+  <script src="/js/pages/custom/home/home.js"></script>
+  <script src="/js/pages/custom/login/login-general.js"></script>
+  <script src="/js/pages/custom/login/reset-password.js"></script>
+  <script src="/js/pages/custom/meeting/scheduleMeeting.js"></script>
+  <script src="/js/pages/custom/profile/changePassword.js"></script>
+  <script src="/js/pages/custom/profile/providerMyAccount.js"></script>
+  <script src="/js/pages/custom/profile/studentMyAccount.js"></script>
+  <script src="/js/pages/custom/profile/updateProviderProfile.js"></script>
+  <script src="/js/pages/custom/profile/updateStudentProfile.js"></script>
+  <script src="/js/pages/custom/provider/searchProvider.js"></script>
+  <script src="/js/pages/custom/provider/searchProviderSection.js"></script>
+  <script src="/js/pages/widgets.js"></script>
+  <script src="/js/pages/widgets.min.js"></script>
+  <script src="/js/password.js"></script>
+  <script src="/js/scripts.bundle.js"></script>
+  <script src="/js/scripts.bundle.min.js"></script>
+  <script src="/js/utils.js"></script>
+  <!--SCRIPTS END-->
+</body>
+
+</html>

@@ -1,0 +1,772 @@
+<!-- rateYo CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta charSet="utf-8" />
+  <link rel="stylesheet" href="/css/commonLayout.css" as="font" />
+  <link href="/css/style.bundle.css" rel="stylesheet" type="text/css" />
+  <title>Asknanswr</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <link href="/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+ <link href="/css/common.style.bundle.css" rel="stylesheet" type="text/css" />
+ <link rel="shortcut icon" href="/media/logos/favicon.ico" />
+ 
+</head>
+
+<body>
+  <script>
+    const PROVIDER = <%= PROVIDER %>;
+    const STUDENT = <%= STUDENT %>;
+  </script>
+    <!--begin::Global Config(global config for global JS scripts)-->
+    <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#8950FC", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+    <!--end::Global Config-->    <!--begin::Global Theme Bundle(used by all pages)-->
+    <script src="/plugins/global/plugins.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.28/moment-timezone-with-data.min.js"
+      integrity="sha256-IWYg4uIC8/erItNXYvLtyYHioRi2zT1TFva8qaAU/ww=" crossorigin="anonymous"></script>
+    <script src="/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script src="/js/scripts.bundle.js"></script>
+    <!--end::Global Theme Bundle-->
+      <!--begin::Page Vendors(used by this page)-->
+  <script src="/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+  <script src="/plugins/custom/leaflet/leaflet.bundle.js"></script>
+  <!--end::Page Vendors-->
+    <!--begin::Page Scripts(used by this page)-->
+    <script>
+      const SEARCH_SEPARATOR_CHARACTER = '<%= process.env.SEARCH_SEPARATOR_CHARACTER || "|" %>';
+    </script>
+    <script src="/js/pages/custom/provider/searchProviderSection.js"></script>
+    <!--end::Page Scripts-->
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="/js/pages/widgets.js"></script>
+    <script src="/js/pages/custom/common/mainPageLayout.js"></script>
+    <!--end::Page Scripts-->
+
+      <!--begin::Loader-->
+  <div id="loader-spinner">
+    <div class="inner-div">
+      <div class="loadingio-spinner-rolling-1sf8y50palm">
+        <div class="ldio-snwwl63mxg">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--begin::Script for loader-->
+  <script>
+    const _loader = $('#loader-spinner');
+  </script>
+  <!--end::Script for loader-->
+  <!--end::Loader-->
+  <div id="__next">
+    <main>
+      <div class="dynamic-template">
+        <div id="kt_header_menu" class="base-layout-segment-component ">
+          <div class="base-header-component">
+            <div class="desktop-wrapper">
+              <header class="base-header-desktop-component">
+                <div class="basic-header-component">
+                  <div class="basic-header-content-wrapper">
+                    <div class="basic-header-content header-menu">
+                      <a href="/" target="_self" class="d-flex">
+                        <img src="/media/logos/asknanswr-logo-sqr.png" class="max-h-70px mx-2" alt="" />
+                        <h3 class="d-none text-dark d-lg-flex align-items-center mr-10 mb-0">Asknanswr</h3>
+                      </a>
+                      <div class="base-header-desktop-content">
+                        <ul class="menu-nav left-side-header-links">
+                          <li class="menu-item <%= req.path === '/home' && 'menu-item-active' || ''%>" aria-haspopup="true">
+                            <a href="/home" class="menu-link">
+                              <span class="menu-text is-token">Dashboard</span>
+                            </a>
+                          </li>
+                          <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+                            <a href="javascript:;" class="menu-link menu-toggle">
+                              <span class="menu-text">Category</span>
+                              <span class="menu-desc"></span>
+                              <i class="menu-arrow"></i>
+                            </a>
+                            <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                              <ul class="menu-subnav">
+                                <% categories.forEach(function(item){ %>
+                                <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+                                  <a href="javascript:;" class="menu-link menu-toggle">
+                                    <span class="menu-text"><%= item.name %></span>
+                                    <i class="menu-arrow"></i>
+                                  </a>
+                                  <div class="menu-submenu menu-submenu-classic menu-submenu-right">
+                                    <ul class="menu-subnav">
+                                      <% item.subCategories.forEach(function(subCat){ %>
+                                      <li class="menu-item" aria-haspopup="true">
+                                        <a href="/providers?search=<%= subCat.name %>" class="menu-link">
+                                          <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                          </i>
+                                          <span class="menu-text"><%= subCat.name %></span>
+                                        </a>
+                                      </li>
+                                      <%  }); %>
+                                    </ul>
+                                  </div>
+                                </li>
+                                <%  }); %>
+                              </ul>
+                            </div>
+                          </li>
+                          <li
+                            class="is-token menu-item menu-item-submenu menu-item-rel <%= req.path.startsWith('/profile/') && 'menu-item-open menu-item-here' || ''%>"
+                            data-menu-toggle="click" aria-haspopup="true">
+                            <a href="javascript:;" class="menu-link menu-toggle">
+                              <span class="menu-text">My Profile</span>
+                              <span class="menu-desc"></span>
+                              <i class="menu-arrow"></i>
+                            </a>
+                            <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                              <ul class="menu-subnav">
+                                <li
+                                  class="for-student menu-item <%= req.path === '/profile/user/update' && 'menu-item-active' || ''%>"
+                                  aria-haspopup="true">
+                                  <a href="/profile/user/update" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                      <span></span>
+                                    </i>
+                                    <span class="menu-text">Personal Information</span>
+                                  </a>
+                                </li>
+                                <li
+                                  class="for-provider menu-item <%= req.path === '/profile/provider/update' && 'menu-item-active' || ''%>"
+                                  aria-haspopup="true">
+                                  <a href="/profile/provider/update" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                      <span></span>
+                                    </i>
+                                    <span class="menu-text">Personal Information</span>
+                                  </a>
+                                </li>
+                                <li
+                                  class="menu-item <%= req.path === '/profile/change-password' && 'menu-item-active' || ''%>"
+                                  aria-haspopup="true">
+                                  <a href="/profile/change-password" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                      <span></span>
+                                    </i>
+                                    <span class="menu-text">Change Password</span>
+                                  </a>
+                                </li>
+                                <li
+                                  class="for-student menu-item <%= req.path === '/profile/user/my-account' && 'menu-item-active' || ''%>"
+                                  aria-haspopup="true">
+                                  <a href="/profile/user/my-account" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                      <span></span>
+                                    </i>
+                                    <span class="menu-text">Saved Cards</span>
+                                  </a>
+                                </li>
+                                <li
+                                  class="for-provider menu-item <%= req.path === '/profile/provider/my-account' && 'menu-item-active' || ''%>"
+                                  aria-haspopup="true">
+                                  <a href="/profile/provider/my-account" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                      <span></span>
+                                    </i>
+                                    <span class="menu-text">Saved Banks</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="is-login searchBox">
+                            <div class="container d-flex flex-column ">
+                              <!--begin::Search Bar-->
+                              <div class="d-flex align-items-md-center mb-2 flex-column flex-md-row">
+                                <div class="bg-white rounded p-4 d-flex flex-grow-1 flex-sm-grow-0 w-100">
+                                  <!--begin::Form-->
+                                  <form class="form d-flex align-items-md-center flex-sm-row flex-column flex-grow-1 flex-sm-grow-0 w-100"
+                                    method="GET" id="search_provider_form_guest" action="/providers">
+                                    <!--begin::Input-->
+                                    <div class="d-flex align-items-center py-3 py-sm-0 px-sm-3 typeahead w-100">
+                                      <span class="svg-icon svg-icon-lg">
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                          height="24px" viewBox="0 0 24 24" version="1.1">
+                                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="0" y="0" width="24" height="24" />
+                                            <path
+                                              d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                                              fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                            <path
+                                              d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                                              fill="#000000" fill-rule="nonzero" />
+                                          </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                      </span>
+                                      <span class="w-100">
+                                        <input class="form-control border-0 font-weight-bold pl-2" id="search_provider_guest" name="search" required
+                                          type="text" dir="ltr" placeholder="Web Development" />
+                                      </span>
+                                    </div>
+                                    <!--end::Input-->
+                                    <button type="submit"
+                                      class="btn btn-dark font-weight-bold btn-hover-light-primary mt-3 mt-sm-0 px-7">Search</button>
+                                  </form>
+                                  <!--end::Form-->
+                                </div>
+                              </div>
+                              <!--end::Search Bar-->
+                            </div>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="right-side-header-links">
+                          <!-- <div class="link-item-component-wrapper is-login"><a
+                              href="#"
+                              class="link-item-component">Contact Sales</a></div> -->
+                          <div class="link-item-component-wrapper is-login"><a href="auth/login"
+                              class="link-item-component">Login</a></div>
+                        </div>
+                           <!--begin::Topbar-->
+                        <div class="topbar is-token">
+                               <!--begin::Chat-->
+                              <div class="topbar-item mr-5">
+                                <a href="/messages" class="btn btn-icon btn-clean btn-lg">
+                                  <span class="svg-icon svg-icon-xl">
+                                    <!--begin::Svg Icon | path:/media/svg/icons/Communication/Group-chat.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                      height="24px" viewBox="0 0 24 24" version="1.1">
+                                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24" />
+                                        <path
+                                          d="M16,15.6315789 L16,12 C16,10.3431458 14.6568542,9 13,9 L6.16183229,9 L6.16183229,5.52631579 C6.16183229,4.13107011 7.29290239,3 8.68814808,3 L20.4776218,3 C21.8728674,3 23.0039375,4.13107011 23.0039375,5.52631579 L23.0039375,13.1052632 L23.0206157,17.786793 C23.0215995,18.0629336 22.7985408,18.2875874 22.5224001,18.2885711 C22.3891754,18.2890457 22.2612702,18.2363324 22.1670655,18.1421277 L19.6565168,15.6315789 L16,15.6315789 Z"
+                                          fill="#000000" />
+                                        <path
+                                          d="M1.98505595,18 L1.98505595,13 C1.98505595,11.8954305 2.88048645,11 3.98505595,11 L11.9850559,11 C13.0896254,11 13.9850559,11.8954305 13.9850559,13 L13.9850559,18 C13.9850559,19.1045695 13.0896254,20 11.9850559,20 L4.10078614,20 L2.85693427,21.1905292 C2.65744295,21.3814685 2.34093638,21.3745358 2.14999706,21.1750444 C2.06092565,21.0819836 2.01120804,20.958136 2.01120804,20.8293182 L2.01120804,18.32426 C1.99400175,18.2187196 1.98505595,18.1104045 1.98505595,18 Z M6.5,14 C6.22385763,14 6,14.2238576 6,14.5 C6,14.7761424 6.22385763,15 6.5,15 L11.5,15 C11.7761424,15 12,14.7761424 12,14.5 C12,14.2238576 11.7761424,14 11.5,14 L6.5,14 Z M9.5,16 C9.22385763,16 9,16.2238576 9,16.5 C9,16.7761424 9.22385763,17 9.5,17 L11.5,17 C11.7761424,17 12,16.7761424 12,16.5 C12,16.2238576 11.7761424,16 11.5,16 L9.5,16 Z"
+                                          fill="#000000" opacity="0.3" />
+                                      </g>
+                                    </svg>
+                                    <!--end::Svg Icon-->
+                                  </span>
+                                </a>
+                              </div>
+                              <!--end::Chat-->
+                          <!--begin::User-->
+                          <div class="topbar-item">
+                            <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2"
+                              id="kt_quick_user_toggle">
+                              <div class="d-flex flex-column text-right pr-3">
+                                <span
+                                  class="current-user-name text-muted font-weight-bold font-size-base d-none d-md-inline"></span>
+                              </div>
+                              <span class="symbol symbol-35 symbol-light-primary">
+                                <span class="current-user-name-1 symbol-label font-size-h5 font-weight-bold"></span>
+                              </span>
+                            </div>
+                          </div>
+                          <!--end::User-->
+                        </div>
+                        <!--end::Topbar-->
+                        <div class="header-button-wrapper is-login">
+                          <div class="button">
+                            <div class="signup-button">
+                              <div class="error-handling-component">
+                                <div class="shake stop">
+                                  <div class="signup-form-core-component-wrapper ">
+                                    <div class="signup-button-wrapper"><a href="auth/login"><button tabindex="2" class="ladda-button signup-button pink xs"
+                                        data-style="zoom-in" data-size="xl" type="button"><span href="auth/login" class="ladda-label"><span
+                                            class="signup-text">Get
+                                            Started</span><span class="signup-arrow-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="8"
+                                              height="14" viewBox="0 0 8 14">
+                                              <path
+                                                d="M.313 12.045l5.113-5.112L.313 1.821A1.065 1.065 0 1 1 1.82.312L7.687 6.18a1.064 1.064 0 0 1 0 1.508L1.82 13.554a1.065 1.065 0 1 1-1.507-1.508z">
+                                              </path>
+                                            </svg></span></span></button></a></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </header>
+            </div>
+            <div class="mobile-wrapper">
+              <header class="base-header-mobile-component">
+                <div class="basic-header-component">
+                  <div class="basic-header-content-wrapper">
+                    <div class="basic-header-content"><a href="index.html" target="_self">
+                        <picture class="picture-component"><img alt="logo-1.png"
+                            class="base-header-phonix-logo-image max-h-30px w-auto"
+                            src="/media/logos/asknanswr-logo.png" />
+                            </picture>
+                      </a>
+                      <div class="mobile-header-content">
+                        <div class="hamburger-menu"><span class=""></span><span
+                            class=""></span><span class=""></span><span
+                            class=""></span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="header-menu-component-wrapper">
+                  <div class="header-menu-mobile-component">
+                    <div style="height:70px" class="link-with-menu-mobile-component">
+                      <div class="link-with-menu-title-wrapper"><span
+                          class="link-with-menu-title-text">Product</span><svg width="256" height="256"
+                          viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" class="link-with-menu-title-icon">
+                          <title>change copy</title>
+                          <path
+                            d="M0 66.73c0 2.66.981 5.33 2.955 7.41l117.332 123.323a10.64 10.64 0 0 0 7.712 3.314c2.912 0 5.696-1.19 7.712-3.314L253.043 74.14c4.074-4.278 3.914-11.077-.331-15.163a10.627 10.627 0 0 0-15.083.333L128 174.536 18.379 59.32c-4.075-4.279-10.827-4.429-15.083-.343A10.76 10.76 0 0 0 0 66.73z"
+                            fill="#000" fill-rule="nonzero"></path>
+                        </svg></div>
+                      <div class="link-with-menu-links-wrapper"><a class="header-link"
+                          href="#">Product overview</a><a class="header-link"
+                          href="#">Integrations</a><a class="header-link"
+                          href="#">Asknanswr Apps</a><a class="header-link"
+                          href="#">Customers</a></div>
+                    </div>
+                    <div style="height:70px" class="link-with-menu-mobile-component">
+                      <div class="link-with-menu-title-wrapper"><span
+                          class="link-with-menu-title-text">Use Cases</span><svg width="256" height="256"
+                          viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" class="link-with-menu-title-icon">
+                          <title>change copy</title>
+                          <path
+                            d="M0 66.73c0 2.66.981 5.33 2.955 7.41l117.332 123.323a10.64 10.64 0 0 0 7.712 3.314c2.912 0 5.696-1.19 7.712-3.314L253.043 74.14c4.074-4.278 3.914-11.077-.331-15.163a10.627 10.627 0 0 0-15.083.333L128 174.536 18.379 59.32c-4.075-4.279-10.827-4.429-15.083-.343A10.76 10.76 0 0 0 0 66.73z"
+                            fill="#000" fill-rule="nonzero"></path>
+                        </svg></div>
+                      <div class="link-with-menu-links-wrapper"><a class="header-link"
+                          href="#">Remote Work<div class="new-badge-component-wrapper"><span
+                              class="new-badge-component">Popular</span></div></a><a class="header-link"
+                          href="#">Project management</a><a class="header-link"
+                          href="#">Marketing</a><a class="header-link"
+                          href="#">Software development</a><a class="header-link"
+                          href="#">Low Code Development</a><a class="header-link"
+                          href="#">IT</a><a class="header-link"
+                          href="#.html">HR</a><a class="header-link"
+                          href="#">Sales</a><a class="header-link"
+                          href="#">Creative Production</a><a class="header-link"
+                          href="#">Create your own</a></div>
+                    </div><a href="enterprise/index.html" class="link-mobile-component">Enterprise</a><a
+                      href="#" class="link-mobile-component">Pricing</a><a
+                      href="#"
+                      class="link-mobile-component">Contact Sales</a><a
+                      href="#" class="link-mobile-component">Login</a>
+                    <div class="download-mobile-app-component-wrapper">
+                      <div class="download-mobile-app-component">
+                        <picture class="picture-component"><img alt="app_store.png"
+                            class="download-mobile-app-image"
+                            src="/img/app_store.png" />
+                        </picture>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </header>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <%- body %>
+    </main>
+    <div>
+
+          <div id="base-layout-segment-component-13" class="base-layout-segment-component">
+          <div class="long-footer-component">
+            <div class="">
+              <footer class="short-footer-component">
+                <div class="short-footer-header">
+                  <div class="short-footer-links">
+                    <div class="short-footer-link-component-wrapper"><a href="/about"
+                        class="short-footer-link-component">About Us</a></div>
+                    <div class="short-footer-link-component-wrapper"><a href="http://www.asknanswr.com/partnership"
+                        class="short-footer-link-component">Partners</a></div>
+                    <div class="short-footer-link-component-wrapper"><a href="http://www.asknanswr.com/careers"
+                        class="short-footer-link-component">Careers</a></div>
+                    <div class="short-footer-link-component-wrapper"><a href="http://www.asknanswr.com/blog"
+                        class="short-footer-link-component">Blog</a></div>
+                    <div class="short-footer-link-component-wrapper"><a href="http://www.asknanswr.com/pricing"
+                        class="short-footer-link-component">Pricing</a></div>
+                    <div class="short-footer-link-component-wrapper"><a href="http://www.asknanswr.com/tos"
+                        class="short-footer-link-component">Terms of Service</a></div>
+                    <div class="short-footer-link-component-wrapper"><a href="http://www.asknanswr.com/privacy"
+                        class="short-footer-link-component">Privacy Policy</a></div>
+                    <div class="short-footer-link-component-wrapper"><a href="http://www.asknanswr.com/product"
+                        class="short-footer-link-component">Product</a></div>
+                    <div class="short-footer-link-component-wrapper"><a href="/contact"
+                        class="short-footer-link-component">Contact Us</a></div>
+                    <div class="language-picker-wrapper-component">
+                      <div class="language-picker-component">
+                        <div class="selected-language ignore-clickoutside"><svg width="20" height="20"
+                            viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="earth-icon">
+                            <path d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" stroke="#323338" stroke-linecap="round"
+                              stroke-linejoin="round"></path>
+                            <path
+                              d="M7.831 18.737C6.613 16.95 5.8 13.707 5.8 10c0-3.706.813-6.951 2.031-8.737M1 10h18M2.386 14.8h15.229M2.386 5.2h15.229M12.169 1.263C13.386 3.05 14.2 6.293 14.2 10c0 3.706-.813 6.951-2.031 8.737"
+                              stroke="#323338" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                          <div class="language-label">English</div><svg width="256" height="256"
+                            viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" class="arrow-down-icon">
+                            <title>change copy</title>
+                            <path
+                              d="M0 66.73c0 2.66.981 5.33 2.955 7.41l117.332 123.323a10.64 10.64 0 0 0 7.712 3.314c2.912 0 5.696-1.19 7.712-3.314L253.043 74.14c4.074-4.278 3.914-11.077-.331-15.163a10.627 10.627 0 0 0-15.083.333L128 174.536 18.379 59.32c-4.075-4.279-10.827-4.429-15.083-.343A10.76 10.76 0 0 0 0 66.73z"
+                              fill="#000" fill-rule="nonzero"></path>
+                          </svg>
+                        </div>
+                        <div class="language-picker-dialog-component-wrapper left">
+                          <div style="height:208px;width:232px" class="language-picker-dialog-component">
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">English</div>
+                              </div>
+                            </div>
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">Español</div>
+                              </div>
+                            </div>
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">Français</div>
+                              </div>
+                            </div>
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">Deutsch</div>
+                              </div>
+                            </div>
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">Português</div>
+                              </div>
+                            </div>
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">Nederlands</div>
+                              </div>
+                            </div>
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">Italiano</div>
+                              </div>
+                            </div>
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">Pусский</div>
+                              </div>
+                            </div>
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">日本語</div>
+                              </div>
+                            </div>
+                            <div class="language-picker-item-component-wrapper">
+                              <div class="language-picker-item-component">
+                                <div class="language-picker-item-label">한국어</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="phonix-logo-wrapper">
+                    <a href="#">
+                      <picture class="picture-component"><img alt="logo-1.png""
+                        class="base-header-phonix-logo-image max-h-50px mb-3"
+                        src="/media/logos/asknanswr-logo.png" />
+                        </picture>
+                    </a>
+                  </div>
+                <div class="contact-info-wrapper">
+                  <div class="all-right-reserved-info">All Rights Reserved © Asknanswr</div>
+                  <address class="address-info">
+                    89 W 16th St. New York, NY 1011, USA
+                  </address>
+                </div>
+                <div class="social-proof-wrapper">
+                  <div class="palette-icons-container">
+                    <div class="icons-wrapper">
+                      <div class="single-social-icon-wrapper">
+                        <div class="social-media-icon"><a target="_blank"
+                            href="#" >
+                            <div class="regular-icon-container"><svg width="24" height="25"
+                                viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                >
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M12 .48C5.373.48 0 5.827 0 12.422c0 6.596 5.373 11.942 12 11.942s12-5.346 12-11.942C24 5.827 18.627.48 12 .48zm-.334 10.12l-.025-.413c-.076-1.071.587-2.05 1.636-2.429.387-.135 1.041-.152 1.47-.033.167.05.486.219.713.37l.411.279.453-.143c.252-.076.588-.203.739-.287.143-.076.269-.118.269-.093 0 .143-.311.633-.571.902-.353.38-.252.414.461.16.428-.143.437-.143.353.017-.05.085-.31.38-.588.65-.47.464-.495.514-.495.902 0 .599-.285 1.847-.57 2.53-.53 1.282-1.663 2.606-2.796 3.272-1.595.936-3.718 1.172-5.506.624-.596-.185-1.62-.658-1.62-.742 0-.025.31-.059.688-.067a4.743 4.743 0 0 0 2.25-.624l.453-.27-.52-.178c-.739-.252-1.402-.834-1.57-1.382-.05-.178-.034-.186.437-.186l.486-.008-.411-.194c-.487-.245-.932-.658-1.15-1.08-.16-.303-.36-1.07-.302-1.13.017-.025.193.025.394.093.58.21.655.16.32-.194-.63-.641-.823-1.594-.521-2.496l.143-.405.554.548c1.133 1.105 2.467 1.763 3.995 1.957l.42.05z"
+                                  fill="#535768"></path>
+                              </svg></div>
+                          </a></div>
+                      </div>
+                      <div class="single-social-icon-wrapper">
+                        <div class="social-media-icon"><a target="_blank"
+                            href="#" >
+                            <div class="regular-icon-container"><svg width="24" height="25"
+                                viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                >
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M12 .48C5.373.48 0 5.827 0 12.422c0 6.596 5.373 11.942 12 11.942s12-5.346 12-11.942C24 5.827 18.627.48 12 .48zm-6.24 9.891h2.72v8.131H5.76v-8.13zm2.9-2.515c-.017-.798-.59-1.405-1.52-1.405s-1.538.607-1.538 1.405c0 .78.59 1.405 1.503 1.405h.017c.948 0 1.539-.625 1.539-1.405zm6.495 2.324c1.79 0 3.132 1.162 3.132 3.66v4.662h-2.72v-4.35c0-1.093-.393-1.839-1.378-1.839-.751 0-1.199.503-1.395.989-.072.174-.09.416-.09.659v4.541h-2.72s.036-7.368 0-8.131h2.72v1.152c.361-.554 1.007-1.343 2.451-1.343z"
+                                  fill="#535768"></path>
+                              </svg></div>
+                          </a></div>
+                      </div>
+                      <div class="single-social-icon-wrapper">
+                        <div class="social-media-icon"><a target="_blank"
+                            href="#" >
+                            <div class="regular-icon-container"><svg width="24" height="25"
+                                viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                >
+                                <path
+                                  d="M24 12.422C24 5.826 18.628.48 12 .48S0 5.826 0 12.422c0 5.962 4.388 10.902 10.125 11.798v-8.346H7.078v-3.452h3.047v-2.63c0-2.993 1.79-4.647 4.533-4.647 1.312 0 2.686.234 2.686.234v2.938H15.83c-1.49 0-1.955.922-1.955 1.866v2.24h3.328l-.532 3.451h-2.796v8.346C19.613 23.324 24 18.384 24 12.422z"
+                                  fill="#535768"></path>
+                              </svg></div>
+                          </a></div>
+                      </div>
+                      <div class="single-social-icon-wrapper">
+                        <div class="social-media-icon"><a target="_blank"
+                            href="#" >
+                            <div class="regular-icon-container"><svg width="24" height="25"
+                                viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                >
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M12 .48C5.373.48 0 5.827 0 12.422c0 6.596 5.373 11.942 12 11.942s12-5.346 12-11.942C24 5.827 18.627.48 12 .48zM9.363 6.091c.683-.03.901-.038 2.64-.038H12c1.739 0 1.956.007 2.639.038.681.031 1.147.139 1.555.296.42.163.777.38 1.133.735.356.354.575.709.739 1.128.157.405.265.868.297 1.546.03.679.039.896.039 2.626s-.008 1.946-.04 2.625c-.031.678-.14 1.141-.296 1.546a3.125 3.125 0 0 1-.74 1.128 3.132 3.132 0 0 1-1.132.735c-.407.158-.873.265-1.554.296-.683.031-.9.039-2.639.039-1.738 0-1.956-.008-2.638-.039-.682-.03-1.147-.138-1.554-.296a3.134 3.134 0 0 1-1.133-.735 3.119 3.119 0 0 1-.738-1.128c-.159-.405-.266-.868-.298-1.546-.03-.679-.038-.895-.038-2.625s.008-1.947.038-2.627c.03-.677.139-1.14.297-1.545.164-.42.383-.774.74-1.128a3.135 3.135 0 0 1 1.133-.735c.407-.157.872-.265 1.553-.296z"
+                                  fill="#535768"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M11.427 7.201H12c1.708 0 1.911.006 2.586.037.624.028.963.132 1.188.219.299.115.512.253.736.476.224.223.362.436.479.733.087.224.192.561.22 1.182.03.671.037.873.037 2.573s-.006 1.901-.037 2.573c-.029.62-.133.958-.22 1.182a1.968 1.968 0 0 1-.48.732 1.98 1.98 0 0 1-.735.476c-.225.088-.564.191-1.188.22-.675.03-.878.037-2.586.037-1.71 0-1.912-.007-2.587-.037-.624-.03-.962-.133-1.188-.22a1.982 1.982 0 0 1-.736-.477 1.973 1.973 0 0 1-.479-.732c-.087-.224-.192-.56-.22-1.182-.031-.671-.037-.873-.037-2.574 0-1.7.006-1.901.037-2.573.028-.62.133-.958.22-1.182.116-.297.255-.51.479-.732.224-.223.437-.361.736-.477.226-.088.564-.191 1.188-.22.59-.026.82-.034 2.013-.036v.002zm3.99 1.058a.766.766 0 0 0-.768.764c0 .422.344.764.768.764a.766.766 0 0 0 .768-.764.766.766 0 0 0-.768-.765zm-6.703 4.163A3.279 3.279 0 0 1 12 9.152a3.279 3.279 0 0 1 3.286 3.27A3.278 3.278 0 0 1 12 15.692a3.278 3.278 0 0 1-3.287-3.27z"
+                                  fill="#535768"></path>
+                                <path
+                                  d="M12 10.3c1.179 0 2.134.95 2.134 2.122A2.128 2.128 0 0 1 12 14.546a2.128 2.128 0 0 1-2.134-2.123c0-1.172.955-2.123 2.133-2.123z"
+                                  fill="#535768"></path>
+                              </svg></div>
+                          </a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+            </div>
+          </div>
+        </div>
+
+<!-- begin::User Panel-->
+  <div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
+    <!--begin::Header-->
+    <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
+      <h3 class="font-weight-bold m-0">User Profile</h3>
+      <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
+        <i class="ki ki-close icon-xs text-muted"></i>
+      </a>
+    </div>
+    <!--end::Header-->
+    <!--begin::Content-->
+    <div class="offcanvas-content pr-5 mr-n5">
+      <!--begin::Header-->
+      <div class="d-flex align-items-center mt-5">
+        <div class="symbol symbol-100 mr-5">
+          <div class="current-user-profile-pic-div symbol-label" style="background-image:url('/media/users/blank.png')">
+          </div>
+          <i class="symbol-badge bg-success"></i>
+        </div>
+        <div class="d-flex flex-column">
+          <a href="#" class="current-user-name font-weight-bold font-size-h5 text-dark-75 text-hover-primary"></a>
+          <div class="current-user-role text-muted mt-1"></div>
+          <div class="navi mt-2">
+            <a href="#" class="navi-item">
+              <span class="navi-link p-0 pb-2">
+                <span class="navi-icon mr-1">
+                  <span class="svg-icon svg-icon-lg svg-icon-primary">
+                    <!--begin::Svg Icon | path:/media/svg/icons/Communication/Mail-notification.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                      height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect x="0" y="0" width="24" height="24" />
+                        <path
+                          d="M21,12.0829584 C20.6747915,12.0283988 20.3407122,12 20,12 C16.6862915,12 14,14.6862915 14,18 C14,18.3407122 14.0283988,18.6747915 14.0829584,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,12.0829584 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z"
+                          fill="#000000" />
+                        <circle fill="#000000" opacity="0.3" cx="19.5" cy="17.5" r="2.5" />
+                      </g>
+                    </svg>
+                    <!--end::Svg Icon-->
+                  </span>
+                </span>
+                <span class="current-user-email navi-text text-muted text-hover-primary"></span>
+              </span>
+            </a>
+            <button class="Sign-out-btn btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</button>
+          </div>
+        </div>
+      </div>
+      <!--end::Header-->
+      <!--begin::Separator-->
+      <div class="separator separator-dashed mt-8 mb-5"></div>
+      <!--end::Separator-->
+      <!--begin::Nav-->
+      <div class="navi navi-spacer-x-0 p-0">
+        <!--begin::Item-->
+        <a href="/profile/user/update" class="for-student navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-success">
+                  <!--begin::Svg Icon | path:/media/svg/icons/General/Notification2.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <rect x="0" y="0" width="24" height="24" />
+                      <path
+                        d="M13.2070325,4 C13.0721672,4.47683179 13,4.97998812 13,5.5 C13,8.53756612 15.4624339,11 18.5,11 C19.0200119,11 19.5231682,10.9278328 20,10.7929675 L20,17 C20,18.6568542 18.6568542,20 17,20 L7,20 C5.34314575,20 4,18.6568542 4,17 L4,7 C4,5.34314575 5.34314575,4 7,4 L13.2070325,4 Z"
+                        fill="#000000" />
+                      <circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5" r="2.5" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">My Profile</div>
+              <div class="text-muted">Account settings and more
+                <span class="label label-light-danger label-inline font-weight-bold">update</span></div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+        <!--begin::Item-->
+        <a href="/profile/provider/update" class="for-provider navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-success">
+                  <!--begin::Svg Icon | path:/media/svg/icons/General/Notification2.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <rect x="0" y="0" width="24" height="24" />
+                      <path
+                        d="M13.2070325,4 C13.0721672,4.47683179 13,4.97998812 13,5.5 C13,8.53756612 15.4624339,11 18.5,11 C19.0200119,11 19.5231682,10.9278328 20,10.7929675 L20,17 C20,18.6568542 18.6568542,20 17,20 L7,20 C5.34314575,20 4,18.6568542 4,17 L4,7 C4,5.34314575 5.34314575,4 7,4 L13.2070325,4 Z"
+                        fill="#000000" />
+                      <circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5" r="2.5" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">My Profile</div>
+              <div class="text-muted">Account settings and more
+                <span class="label label-light-danger label-inline font-weight-bold">update</span></div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+        <!--begin::Item-->
+        <a href="/messages" class="navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-warning">
+                  <!--begin::Svg Icon | path:/media/svg/icons/Shopping/Chart-bar1.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <rect x="0" y="0" width="24" height="24" />
+                      <rect fill="#000000" opacity="0.3" x="12" y="4" width="3" height="13" rx="1.5" />
+                      <rect fill="#000000" opacity="0.3" x="7" y="9" width="3" height="8" rx="1.5" />
+                      <path
+                        d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z"
+                        fill="#000000" fill-rule="nonzero" />
+                      <rect fill="#000000" opacity="0.3" x="17" y="11" width="3" height="6" rx="1.5" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">My Messages</div>
+              <div class="text-muted">Inbox and tasks</div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+        <!--begin::Item-->
+        <a href="/user/meeting-history" class="for-student navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-danger">
+                  <!--begin::Svg Icon | path:assets/media/svg/icons/Files/Selected-file.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <polygon points="0 0 24 0 24 24 0 24" />
+                      <path
+                        d="M4.85714286,1 L11.7364114,1 C12.0910962,1 12.4343066,1.12568431 12.7051108,1.35473959 L17.4686994,5.3839416 C17.8056532,5.66894833 18,6.08787823 18,6.52920201 L18,19.0833333 C18,20.8738751 17.9795521,21 16.1428571,21 L4.85714286,21 C3.02044787,21 3,20.8738751 3,19.0833333 L3,2.91666667 C3,1.12612489 3.02044787,1 4.85714286,1 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                        fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                      <path
+                        d="M6.85714286,3 L14.7364114,3 C15.0910962,3 15.4343066,3.12568431 15.7051108,3.35473959 L20.4686994,7.3839416 C20.8056532,7.66894833 21,8.08787823 21,8.52920201 L21,21.0833333 C21,22.8738751 20.9795521,23 19.1428571,23 L6.85714286,23 C5.02044787,23 5,22.8738751 5,21.0833333 L5,4.91666667 C5,3.12612489 5.02044787,3 6.85714286,3 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                        fill="#000000" fill-rule="nonzero" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">Meeting History</div>
+              <div class="text-muted">charges and recordings</div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+        <!--begin::Item-->
+        <a href="/provider/meeting-history" class="for-provider navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-danger">
+                  <!--begin::Svg Icon | path:assets/media/svg/icons/Files/Selected-file.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <polygon points="0 0 24 0 24 24 0 24" />
+                      <path
+                        d="M4.85714286,1 L11.7364114,1 C12.0910962,1 12.4343066,1.12568431 12.7051108,1.35473959 L17.4686994,5.3839416 C17.8056532,5.66894833 18,6.08787823 18,6.52920201 L18,19.0833333 C18,20.8738751 17.9795521,21 16.1428571,21 L4.85714286,21 C3.02044787,21 3,20.8738751 3,19.0833333 L3,2.91666667 C3,1.12612489 3.02044787,1 4.85714286,1 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                        fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                      <path
+                        d="M6.85714286,3 L14.7364114,3 C15.0910962,3 15.4343066,3.12568431 15.7051108,3.35473959 L20.4686994,7.3839416 C20.8056532,7.66894833 21,8.08787823 21,8.52920201 L21,21.0833333 C21,22.8738751 20.9795521,23 19.1428571,23 L6.85714286,23 C5.02044787,23 5,22.8738751 5,21.0833333 L5,4.91666667 C5,3.12612489 5.02044787,3 6.85714286,3 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                        fill="#000000" fill-rule="nonzero" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">Meeting History</div>
+              <div class="text-muted">charges and recordings</div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+      </div>
+      <!--end::Nav-->
+    </div>
+    <!--end::Content-->
+  </div>
+  <!-- end::User Panel-->
+</body>
+</html>

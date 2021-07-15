@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!--
+Template Name: Metronic - Bootstrap 4 HTML, React, Angular 9 & VueJS Admin Dashboard Theme
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: https://1.envato.market/EA4JP
+Renew Support: https://1.envato.market/EA4JP
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<html lang="en">
+<!--begin::Head-->
+
+<head>
+  <base href="">
+  <meta charset="utf-8" />
+  <title>Asknanswr</title>
+  <meta name="description" content="Updates and statistics" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!--begin::Fonts-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+  <!--end::Fonts-->
+  <!--begin::Page Vendors Styles(used by this page)-->
+  <link href="/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/custom/leaflet/leaflet.bundle.css" rel="stylesheet" type="text/css" />
+  <!--end::Page Vendors Styles-->
+  <!--begin::Global Theme Styles(used by all pages)-->
+  <link href="/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+  <link href="/css/style.bundle.css" rel="stylesheet" type="text/css" />
+  <!--end::Global Theme Styles-->
+  <!--begin::Layout Themes(used by all pages)-->
+  <!--end::Layout Themes-->
+  <link rel="shortcut icon" href="/media/logos/favicon.ico" />
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
+  <script>
+    const PROVIDER = <%= PROVIDER %>;
+    const STUDENT = <%= STUDENT %>;
+    const STATUS_ACTIVE = <%= STATUS_ACTIVE %>;
+  </script>
+  <script>
+    <% if (data && data.token && data.userId) {%>
+      localStorage.setItem("token", `Bearer <%=data.token %>`);
+      localStorage.setItem("userId", '<%=data.userId %>');
+    <%} %>
+  </script>
+  <script>var HOST_URL = "https://keenthemes.com/metronic/tools/preview";</script>
+  <!--begin::Global Config(global config for global JS scripts)-->
+  <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#8950FC", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+  <!--end::Global Config-->
+  <!--begin::Global Theme Bundle(used by all pages)-->
+  <script src="/plugins/global/plugins.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.28/moment-timezone-with-data.min.js"
+    integrity="sha256-IWYg4uIC8/erItNXYvLtyYHioRi2zT1TFva8qaAU/ww=" crossorigin="anonymous"></script>
+  <script src="/plugins/custom/prismjs/prismjs.bundle.js"></script>
+  <script src="/js/scripts.bundle.js"></script>
+  <!--end::Global Theme Bundle-->
+  <!--begin::Page Vendors(used by this page)-->
+  <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+  <script src="/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+  <script src="/plugins/custom/leaflet/leaflet.bundle.js"></script>
+  <!--end::Page Vendors-->
+  <!--begin::Page Scripts(used by this page)-->
+  <script src="/js/pages/widgets.js"></script>
+  <script src="/js/pages/custom/dashboardLayout.js"></script>
+  <!--end::Page Scripts-->
+  <!--begin::Main-->
+  <!--begin::Loader-->
+  <div id="loader-spinner">
+    <div class="inner-div">
+      <div class="loadingio-spinner-rolling-1sf8y50palm">
+        <div class="ldio-snwwl63mxg">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--begin::Script for loader-->
+  <script>
+    const _loader = $('#loader-spinner');
+  </script>
+  <!--end::Script for loader-->
+  <!--end::Loader-->
+  <!--begin::Header Mobile-->
+  <div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
+    <!--begin::Logo-->
+    <a href="index.html">
+      <img alt="Logo" src="/media/logos/asknanswr-logo.png" class="logo-default max-h-30px" />
+    </a>
+    <!--end::Logo-->
+    <!--begin::Toolbar-->
+    <div class="d-flex align-items-center">
+      <!--begin::Header Menu Mobile Toggle-->
+      <button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
+        <span></span>
+      </button>
+      <!--end::Header Menu Mobile Toggle-->
+      <!--begin::Topbar Mobile Toggle-->
+      <button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
+        <span class="svg-icon svg-icon-xl">
+          <!--begin::Svg Icon | path:/media/svg/icons/General/User.svg-->
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+            viewBox="0 0 24 24" version="1.1">
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <polygon points="0 0 24 0 24 24 0 24" />
+              <path
+                d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                fill="#000000" fill-rule="nonzero" opacity="0.3" />
+              <path
+                d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                fill="#000000" fill-rule="nonzero" />
+            </g>
+          </svg>
+          <!--end::Svg Icon-->
+        </span>
+      </button>
+      <!--end::Topbar Mobile Toggle-->
+    </div>
+    <!--end::Toolbar-->
+  </div>
+  <!--end::Header Mobile-->
+  <div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="d-flex flex-row flex-column-fluid page">
+      <!--begin::Wrapper-->
+      <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+        <!--begin::Header-->
+        <div id="kt_header" class="header bg-white header-fixed">
+          <!--begin::Container-->
+          <div class="container-fluid d-flex align-items-stretch justify-content-between">
+            <!--begin::Left-->
+            <div class="d-flex align-items-stretch mr-2">
+              <!--begin::Page Title-->
+              <a href="/" class="d-none text-dark d-lg-flex align-items-center">
+                <img src="/media/logos/asknanswr-logo-sqr.png" class="max-h-70px mx-2" alt="" />
+                <h3 class="mr-10 mb-0">Asknanswr</h3>
+              </a>
+              <!--end::Page Title-->
+              <!--begin::Header Menu Wrapper-->
+              <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+                <!--begin::Header Menu-->
+                <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                  <!--begin::Header Nav-->
+                  <ul class="menu-nav">
+                    <li class="menu-item <%= req.path === '/home' && 'menu-item-active' || ''%>" aria-haspopup="true">
+                      <a href="/home" class="menu-link">
+                        <span class="menu-text">Dashboard</span>
+                      </a>
+                    </li>
+                    <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+                      <a href="javascript:;" class="menu-link menu-toggle">
+                        <span class="menu-text">Category</span>
+                        <span class="menu-desc"></span>
+                        <i class="menu-arrow"></i>
+                      </a>
+                      <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                        <ul class="menu-subnav">
+                          <% categories.forEach(function(item){ %>
+                          <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+                            <a href="javascript:;" class="menu-link menu-toggle">
+                              <span class="menu-text"><%= item.name %></span>
+                              <i class="menu-arrow"></i>
+                            </a>
+                            <div class="menu-submenu menu-submenu-classic menu-submenu-right">
+                              <ul class="menu-subnav">
+                                <% item.subCategories.forEach(function(subCat){ %>
+                                <li class="menu-item" aria-haspopup="true">
+                                  <a href="/providers?search=<%= subCat.name %>" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                      <span></span>
+                                    </i>
+                                    <span class="menu-text"><%= subCat.name %></span>
+                                  </a>
+                                </li>
+                                <%  }); %>
+                              </ul>
+                            </div>
+                          </li>
+                          <%  }); %>
+                        </ul>
+                      </div>
+                    </li>
+                    <li
+                      class="menu-item menu-item-submenu menu-item-rel <%= req.path.startsWith('/profile/') && 'menu-item-open menu-item-here' || ''%>"
+                      data-menu-toggle="click" aria-haspopup="true">
+                      <a href="javascript:;" class="menu-link menu-toggle">
+                        <span class="menu-text">My Profile</span>
+                        <span class="menu-desc"></span>
+                        <i class="menu-arrow"></i>
+                      </a>
+                      <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                        <ul class="menu-subnav">
+                          <li
+                            class="for-student menu-item <%= req.path === '/profile/user/update' && 'menu-item-active' || ''%>"
+                            aria-haspopup="true">
+                            <a href="/profile/user/update" class="menu-link">
+                              <i class="menu-bullet menu-bullet-dot">
+                                <span></span>
+                              </i>
+                              <span class="menu-text">Personal Information</span>
+                            </a>
+                          </li>
+                          <li
+                            class="for-provider menu-item <%= req.path === '/profile/provider/update' && 'menu-item-active' || ''%>"
+                            aria-haspopup="true">
+                            <a href="/profile/provider/update" class="menu-link">
+                              <i class="menu-bullet menu-bullet-dot">
+                                <span></span>
+                              </i>
+                              <span class="menu-text">Personal Information</span>
+                            </a>
+                          </li>
+                          <li
+                            class="menu-item <%= req.path === '/profile/change-password' && 'menu-item-active' || ''%>"
+                            aria-haspopup="true">
+                            <a href="/profile/change-password" class="menu-link">
+                              <i class="menu-bullet menu-bullet-dot">
+                                <span></span>
+                              </i>
+                              <span class="menu-text">Change Password</span>
+                            </a>
+                          </li>
+                          <li
+                            class="for-student menu-item <%= req.path === '/profile/user/my-account' && 'menu-item-active' || ''%>"
+                            aria-haspopup="true">
+                            <a href="/profile/user/my-account" class="menu-link">
+                              <i class="menu-bullet menu-bullet-dot">
+                                <span></span>
+                              </i>
+                              <span class="menu-text">Saved Cards</span>
+                            </a>
+                          </li>
+                          <li
+                            class="for-provider menu-item <%= req.path === '/profile/provider/my-account' && 'menu-item-active' || ''%>"
+                            aria-haspopup="true">
+                            <a href="/profile/provider/my-account" class="menu-link">
+                              <i class="menu-bullet menu-bullet-dot">
+                                <span></span>
+                              </i>
+                              <span class="menu-text">Saved Banks</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                  <!--end::Header Nav-->
+                </div>
+                <!--end::Header Menu-->
+              </div>
+              <!--end::Header Menu Wrapper-->
+            </div>
+            <!--end::Left-->
+            <!--begin::Topbar-->
+            <div class="topbar">
+              <!--begin::Chat-->
+              <div class="topbar-item mr-5">
+                <a href="/messages" class="btn btn-icon btn-clean btn-lg">
+                  <span class="svg-icon svg-icon-xl">
+                    <!--begin::Svg Icon | path:/media/svg/icons/Communication/Group-chat.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                      height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect x="0" y="0" width="24" height="24" />
+                        <path
+                          d="M16,15.6315789 L16,12 C16,10.3431458 14.6568542,9 13,9 L6.16183229,9 L6.16183229,5.52631579 C6.16183229,4.13107011 7.29290239,3 8.68814808,3 L20.4776218,3 C21.8728674,3 23.0039375,4.13107011 23.0039375,5.52631579 L23.0039375,13.1052632 L23.0206157,17.786793 C23.0215995,18.0629336 22.7985408,18.2875874 22.5224001,18.2885711 C22.3891754,18.2890457 22.2612702,18.2363324 22.1670655,18.1421277 L19.6565168,15.6315789 L16,15.6315789 Z"
+                          fill="#000000" />
+                        <path
+                          d="M1.98505595,18 L1.98505595,13 C1.98505595,11.8954305 2.88048645,11 3.98505595,11 L11.9850559,11 C13.0896254,11 13.9850559,11.8954305 13.9850559,13 L13.9850559,18 C13.9850559,19.1045695 13.0896254,20 11.9850559,20 L4.10078614,20 L2.85693427,21.1905292 C2.65744295,21.3814685 2.34093638,21.3745358 2.14999706,21.1750444 C2.06092565,21.0819836 2.01120804,20.958136 2.01120804,20.8293182 L2.01120804,18.32426 C1.99400175,18.2187196 1.98505595,18.1104045 1.98505595,18 Z M6.5,14 C6.22385763,14 6,14.2238576 6,14.5 C6,14.7761424 6.22385763,15 6.5,15 L11.5,15 C11.7761424,15 12,14.7761424 12,14.5 C12,14.2238576 11.7761424,14 11.5,14 L6.5,14 Z M9.5,16 C9.22385763,16 9,16.2238576 9,16.5 C9,16.7761424 9.22385763,17 9.5,17 L11.5,17 C11.7761424,17 12,16.7761424 12,16.5 C12,16.2238576 11.7761424,16 11.5,16 L9.5,16 Z"
+                          fill="#000000" opacity="0.3" />
+                      </g>
+                    </svg>
+                    <!--end::Svg Icon-->
+                  </span>
+                </a>
+              </div>
+              <!--end::Chat-->
+              <!--begin::User-->
+              <div class="topbar-item">
+                <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2"
+                  id="kt_quick_user_toggle">
+                  <div class="d-flex flex-column text-right pr-3">
+                    <span
+                      class="current-user-name text-muted font-weight-bold font-size-base d-none d-md-inline"></span>
+                  </div>
+                  <span class="symbol symbol-35 symbol-light-primary">
+                    <span class="current-user-name-1 symbol-label font-size-h5 font-weight-bold"></span>
+                  </span>
+                </div>
+              </div>
+              <!--end::User-->
+            </div>
+            <!--end::Topbar-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::Header-->
+        <%- body %>
+        <!--begin::Footer-->
+        <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
+          <!--begin::Container-->
+          <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <!--begin::Copyright-->
+            <div class="text-dark order-2 order-md-1">
+              <span class="text-muted font-weight-bold mr-2">2020©</span>
+              <a href="/" target="_self" class="text-dark-75 text-hover-primary">Asknanswr</a>
+            </div>
+            <!--end::Copyright-->
+            <!--begin::Nav-->
+            <div class="nav nav-dark order-1 order-md-2">
+              <a href="/about" target="_blank" class="nav-link pr-3 pl-0">About</a>
+              <a href="/team" target="_blank" class="nav-link px-3">Team</a>
+              <a href="/contact" target="_blank" class="nav-link pl-3 pr-0">Contact</a>
+            </div>
+            <!--end::Nav-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::Footer-->
+      </div>
+      <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+  </div>
+  <!--end::Main-->
+  <!-- begin::User Panel-->
+  <div id="kt_quick_user" class="offcanvas offcanvas-right p-5">
+    <!--begin::Header-->
+    <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
+      <h3 class="font-weight-bold m-0">User Profile</h3>
+      <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
+        <i class="ki ki-close icon-xs text-muted"></i>
+      </a>
+    </div>
+    <!--end::Header-->
+    <!--begin::Content-->
+    <div class="offcanvas-content pr-5 mr-n5">
+      <!--begin::Header-->
+      <div class="d-flex align-items-center mt-3">
+        <div class="symbol symbol-70 mr-5">
+          <div class="current-user-profile-pic-div symbol-label" style="background-image:url('/media/users/blank.png')">
+          </div>
+          <i class="symbol-badge bg-success"></i>
+        </div>
+        <div class="d-flex flex-column">
+          <a href="#" class="current-user-name font-weight-bold font-size-h5 text-dark-75 text-hover-primary"></a>
+          <div class="current-user-role text-muted mt-1"></div>
+          <div class="current-user-url text-muted mt-1" style="word-break: break-word"></div>
+          <div class="navi mt-2">
+            <!-- <a href="#" class="navi-item">
+              <span class="navi-link p-0 pb-2">
+                <span class="navi-icon mr-1">
+                  <span class="svg-icon svg-icon-lg svg-icon-primary"> -->
+                    <!--begin::Svg Icon | path:/media/svg/icons/Communication/Mail-notification.svg-->
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                      height="24px" viewBox="0 0 24 24" version="1.1">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect x="0" y="0" width="24" height="24" />
+                        <path
+                          d="M21,12.0829584 C20.6747915,12.0283988 20.3407122,12 20,12 C16.6862915,12 14,14.6862915 14,18 C14,18.3407122 14.0283988,18.6747915 14.0829584,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,12.0829584 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z"
+                          fill="#000000" />
+                        <circle fill="#000000" opacity="0.3" cx="19.5" cy="17.5" r="2.5" />
+                      </g>
+                    </svg> -->
+                    <!--end::Svg Icon-->
+                  <!-- </span>
+                </span>
+                <span class="current-user-email navi-text text-muted text-hover-primary"></span>
+              </span>
+            </a> -->
+            <button class="Sign-out-btn btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</button>
+          </div>
+        </div>
+      </div>
+      <!--end::Header-->
+      <!--begin::Separator-->
+      <div class="separator separator-dashed mt-8 mb-5"></div>
+      <!--end::Separator-->
+      <!--begin::Nav-->
+      <div class="navi navi-spacer-x-0 p-0">
+        <!--begin::Item-->
+        <a href="/profile/user/update" class="for-student navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-success">
+                  <!--begin::Svg Icon | path:/media/svg/icons/General/Notification2.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <rect x="0" y="0" width="24" height="24" />
+                      <path
+                        d="M13.2070325,4 C13.0721672,4.47683179 13,4.97998812 13,5.5 C13,8.53756612 15.4624339,11 18.5,11 C19.0200119,11 19.5231682,10.9278328 20,10.7929675 L20,17 C20,18.6568542 18.6568542,20 17,20 L7,20 C5.34314575,20 4,18.6568542 4,17 L4,7 C4,5.34314575 5.34314575,4 7,4 L13.2070325,4 Z"
+                        fill="#000000" />
+                      <circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5" r="2.5" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">My Profile</div>
+              <div class="text-muted">Account settings and more
+                <span class="label label-light-danger label-inline font-weight-bold">update</span></div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+        <!--begin::Item-->
+        <a href="/profile/provider/update" class="for-provider navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-success">
+                  <!--begin::Svg Icon | path:/media/svg/icons/General/Notification2.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <rect x="0" y="0" width="24" height="24" />
+                      <path
+                        d="M13.2070325,4 C13.0721672,4.47683179 13,4.97998812 13,5.5 C13,8.53756612 15.4624339,11 18.5,11 C19.0200119,11 19.5231682,10.9278328 20,10.7929675 L20,17 C20,18.6568542 18.6568542,20 17,20 L7,20 C5.34314575,20 4,18.6568542 4,17 L4,7 C4,5.34314575 5.34314575,4 7,4 L13.2070325,4 Z"
+                        fill="#000000" />
+                      <circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5" r="2.5" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">My Profile</div>
+              <div class="text-muted">Account settings and more
+                <span class="label label-light-danger label-inline font-weight-bold">update</span></div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+        <!--begin::Item-->
+        <a href="/messages" class="navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-warning">
+                  <!--begin::Svg Icon | path:/media/svg/icons/Shopping/Chart-bar1.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <rect x="0" y="0" width="24" height="24" />
+                      <rect fill="#000000" opacity="0.3" x="12" y="4" width="3" height="13" rx="1.5" />
+                      <rect fill="#000000" opacity="0.3" x="7" y="9" width="3" height="8" rx="1.5" />
+                      <path
+                        d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z"
+                        fill="#000000" fill-rule="nonzero" />
+                      <rect fill="#000000" opacity="0.3" x="17" y="11" width="3" height="6" rx="1.5" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">My Messages</div>
+              <div class="text-muted">Inbox and tasks</div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+        <!--begin::Item-->
+        <a href="/user/meeting-history" class="for-student navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-danger">
+                  <!--begin::Svg Icon | path:assets/media/svg/icons/Files/Selected-file.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <polygon points="0 0 24 0 24 24 0 24" />
+                      <path
+                        d="M4.85714286,1 L11.7364114,1 C12.0910962,1 12.4343066,1.12568431 12.7051108,1.35473959 L17.4686994,5.3839416 C17.8056532,5.66894833 18,6.08787823 18,6.52920201 L18,19.0833333 C18,20.8738751 17.9795521,21 16.1428571,21 L4.85714286,21 C3.02044787,21 3,20.8738751 3,19.0833333 L3,2.91666667 C3,1.12612489 3.02044787,1 4.85714286,1 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                        fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                      <path
+                        d="M6.85714286,3 L14.7364114,3 C15.0910962,3 15.4343066,3.12568431 15.7051108,3.35473959 L20.4686994,7.3839416 C20.8056532,7.66894833 21,8.08787823 21,8.52920201 L21,21.0833333 C21,22.8738751 20.9795521,23 19.1428571,23 L6.85714286,23 C5.02044787,23 5,22.8738751 5,21.0833333 L5,4.91666667 C5,3.12612489 5.02044787,3 6.85714286,3 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                        fill="#000000" fill-rule="nonzero" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">Meeting History</div>
+              <div class="text-muted">charges and recordings</div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+        <!--begin::Item-->
+        <a href="/provider/meeting-history" class="for-provider navi-item">
+          <div class="navi-link">
+            <div class="symbol symbol-40 bg-light mr-3">
+              <div class="symbol-label">
+                <span class="svg-icon svg-icon-md svg-icon-danger">
+                  <!--begin::Svg Icon | path:assets/media/svg/icons/Files/Selected-file.svg-->
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <polygon points="0 0 24 0 24 24 0 24" />
+                      <path
+                        d="M4.85714286,1 L11.7364114,1 C12.0910962,1 12.4343066,1.12568431 12.7051108,1.35473959 L17.4686994,5.3839416 C17.8056532,5.66894833 18,6.08787823 18,6.52920201 L18,19.0833333 C18,20.8738751 17.9795521,21 16.1428571,21 L4.85714286,21 C3.02044787,21 3,20.8738751 3,19.0833333 L3,2.91666667 C3,1.12612489 3.02044787,1 4.85714286,1 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                        fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                      <path
+                        d="M6.85714286,3 L14.7364114,3 C15.0910962,3 15.4343066,3.12568431 15.7051108,3.35473959 L20.4686994,7.3839416 C20.8056532,7.66894833 21,8.08787823 21,8.52920201 L21,21.0833333 C21,22.8738751 20.9795521,23 19.1428571,23 L6.85714286,23 C5.02044787,23 5,22.8738751 5,21.0833333 L5,4.91666667 C5,3.12612489 5.02044787,3 6.85714286,3 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                        fill="#000000" fill-rule="nonzero" />
+                    </g>
+                  </svg>
+                  <!--end::Svg Icon-->
+                </span>
+              </div>
+            </div>
+            <div class="navi-text">
+              <div class="font-weight-bold">Meeting History</div>
+              <div class="text-muted">charges and recordings</div>
+            </div>
+          </div>
+        </a>
+        <!--end:Item-->
+      </div>
+      <!--end::Nav-->
+    </div>
+    <!--end::Content-->
+  </div>
+  <!-- end::User Panel-->
+  <!--begin::Scrolltop-->
+  <div id="kt_scrolltop" class="scrolltop">
+    <span class="svg-icon">
+      <!--begin::Svg Icon | path:/media/svg/icons/Navigation/Up-2.svg-->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+        viewBox="0 0 24 24" version="1.1">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <polygon points="0 0 24 0 24 24 0 24" />
+          <rect fill="#000000" opacity="0.3" x="11" y="10" width="2" height="10" rx="1" />
+          <path
+            d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+            fill="#000000" fill-rule="nonzero" />
+        </g>
+      </svg>
+      <!--end::Svg Icon-->
+    </span>
+  </div>
+  <!--end::Scrolltop-->
+</body>
+<!--end::Body-->
+
+</html>

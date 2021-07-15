@@ -1,0 +1,79 @@
+<!--begin::Content-->
+<div class="content"></div>
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <!--begin::Entry-->
+  <div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+      <!--begin::Profile Personal Information-->
+      <div class="d-flex flex-row">
+        <%- partial('./profileAside.ejs') %>
+        <!--begin::Content-->
+        <div class="flex-row-fluid ml-lg-8">
+          <!--begin::Card-->
+          <div class="card card-custom card-stretch">
+            <!--begin::Header-->
+            <div class="card-header py-3">
+              <div class="card-title align-items-start flex-column">
+                <h3 class="card-label font-weight-bolder text-dark">Saved Credit Cards</h3>
+                <span class="text-muted font-weight-bold font-size-sm mt-1">Update your Cards details</span>
+              </div>
+              <div class="card-toolbar">
+                <button type="button" class="btn btn-success mr-2" id="add_card_btn">Add New Card</button>
+                <button type="button" class="btn btn-secondary d-lg-none"
+                  id="kt_subheader_mobile_toggle">Cancel</button>
+              </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Form-->
+            <form class="form">
+              <!--begin::Body-->
+              <div class="card-body" id="cards_content"></div>
+              <!--end::Body-->
+            </form>
+            <!--end::Form-->
+          </div>
+        </div>
+        <!--end::Content-->
+      </div>
+      <!--end::Profile Personal Information-->
+    </div>
+    <!--end::Container-->
+  </div>
+  <!--end::Entry-->
+</div>
+<!--end::Content-->
+<!--begin::Add New Card Modal-->
+<div class="modal fade" id="add_card_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Card Details</h5>
+        <button type="button" class="close" id="closeAddCardModal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-info mb-4">Please fill-up following details to add card.</p>
+        <form id="payment-form">
+          <div id="card-element">
+            <!-- Elements will create input elements here -->
+          </div>
+          <div id="card-errors" class="text-danger" role="alert"></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" id="add_card_submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end::Add New Card Modal-->
+<!--begin::Page Scripts(used by this page)-->
+<script src="/js/pages/custom/profile/studentMyAccount.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const STRIPE_API_KEY = '<%= process.env.STRIPE_API_KEY %>';
+</script>
+<!--end::Page Scripts-->

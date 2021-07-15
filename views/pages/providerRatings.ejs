@@ -1,0 +1,161 @@
+<!-- rateYo CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+<!-- rateYo JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<!--begin::Content-->
+<div class="content"></div>
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <div class="d-flex">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card card-custom gutter-b card-stretch">
+            <div class="card-header border-0 py-5">
+              <h3 class="card-title align-items-start flex-column">
+                <p class="mb-3 card-label font-weight-bolder text-dark">
+                  Rating & Reviews
+                </p>
+                <p class="mb-1">
+                  <%= provider.first_name %> <%= provider.last_name %>
+                </p>
+                <div class="d-flex align-items-center">
+                  <div id="ratingsAvg"></div>
+                  <script>
+                    $("#ratingsAvg").rateYo({
+                      rating: <%= ratingsData.ratingsAvg || 0 %>,
+                      readOnly: true,
+                      starWidth: "25px",
+                      spacing: "8px"
+                    });
+                  </script>
+                  <div>
+                    <span class="text-muted text-hover-primary"><%= ratingsData.ratingsAvg %>
+                      (<%= ratingsData.ratingsCount %>)</span>
+                  </div>
+                </div>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if(ratingsData.ratings.length > 0){ %>
+  <div class="d-flex">
+    <div class="container">
+      <% ratingsData.ratings.map(item => { %>
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card card-custom gutter-b card-stretch">
+            <div class="card-body pt-4 d-flex flex-column justify-content-between">
+              <div class="d-flex align-items-center mb-7">
+                <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                  <div class="symbol symbol-lg-75">
+                    <img alt="profile picture"
+                      src="<%= item.profilePic && '/api/file/profile-media?filename='+item.profilePic || '/media/users/blank.png'%>">
+                  </div>
+                  <div class="symbol symbol-lg-75 symbol-primary d-none">
+                    <span class="font-size-h3 font-weight-boldest">JM</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-column">
+                  <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">
+                    <%= item.first_name %> <%= item.last_name %></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center my-1">
+                    <span class="text-dark-75 font-weight-bolder mr-2">Rating :</span>
+                    <div class="d-flex align-items-center">
+                      <% ratingId = item.id + Math.floor(Math.random()*10000) %>
+                      <div id="<%= ratingId || 'rating' %>"></div>
+                      <script>
+                        $("#<%= ratingId || 'rating' %>").rateYo({
+                          rating: <%= item.rating || 0 %>,
+                          fullStar: true,
+                          readOnly: true,
+                          starWidth: "20px"
+                        });
+                      </script>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-cente my-1">
+                    <p class="mb-0">
+                      <span class="text-dark-75 font-weight-bolder mr-2">Review Comments :</span>
+                      <span><%= item.ratingComments %></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+      <% pageLink = "/provider/"+provider.id+"/ratings?" %>
+      <% pageCount = Math.ceil(count/limit) %>
+      <% currentPage = Math.floor(skip/limit) + 1 %>
+      <div class="d-flex justify-content-end align-items-center flex-wrap">
+        <div class="d-flex flex-wrap py-2">
+          <a href="<%= pageLink %>skip=0&limit=<%= limit %>"
+            class="btn btn-icon btn-sm btn-light-primary mr-2 my-1 <%= currentPage <= 1 && 'disable' || '' %>"><i
+              class="ki ki-bold-double-arrow-back icon-xs"></i></a>
+          <a href="<%= pageLink %>skip=<%= skip-limit > 0 && skip-limit >=limit && skip-limit || 0 %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm btn-light-primary mr-2 my-1 <%= currentPage <= 1 && 'disable' || '' %>"><i
+              class="ki ki-bold-arrow-back icon-xs"></i></a>
+
+          <% if((currentPage-3)>0){ %>
+          <a href="<%= pageLink %>skip=<%= (currentPage-4)*limit %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1">...</a>
+          <% } %>
+
+          <% if((currentPage-2)>0){ %>
+          <a href="<%= pageLink %>skip=<%= (currentPage-3)*limit %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1"><%= currentPage-2 %></a>
+          <% } %>
+
+          <% if((currentPage-1)>0){ %>
+          <a href="<%= pageLink %>skip=<%= (currentPage-2)*limit %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1"><%= currentPage-1 %></a>
+          <% } %>
+
+          <a href="<%= pageLink %>skip=<%= (currentPage-1)*limit %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1 active disable"><%= currentPage %></a>
+
+          <% if((currentPage+1)<=pageCount){ %>
+          <a href="<%= pageLink %>skip=<%= (currentPage)*limit %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1"><%= currentPage+1 %></a>
+          <% } %>
+
+          <% if((currentPage+2)<=pageCount){ %>
+          <a href="<%= pageLink %>skip=<%= (currentPage+1)*limit %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1"><%= currentPage+2 %></a>
+          <% } %>
+
+          <% if((currentPage+3)<=pageCount){ %>
+          <a href="<%= pageLink %>skip=<%= (currentPage+2)*limit %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1">...</a>
+          <% } %>
+
+          <a href="<%= pageLink %>skip=<%= skip + limit %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm btn-light-primary mr-2 my-1 <%= currentPage >= pageCount && 'disable' || '' %>"><i
+              class="ki ki-bold-arrow-next icon-xs"></i></a>
+          <a href="<%= pageLink %>skip=<%= pageCount * limit - limit %>&limit=<%= limit %>"
+            class="btn btn-icon btn-sm btn-light-primary mr-2 my-1 <%= currentPage >= pageCount && 'disable' || '' %>"><i
+              class="ki ki-bold-double-arrow-next icon-xs"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% }  %>
+</div>
+<!--end::Content-->
+<!--begin::Page Scripts(used by this page)-->
+<script>
+  _loader.hide();
+</script>
+<!--end::Page Scripts-->

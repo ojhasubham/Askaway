@@ -1,0 +1,146 @@
+<!--begin::Page Custom Styles(used by this page)-->
+<link rel="stylesheet" href="/styles/intlTelInput.css">
+<!--end::Page Custom Styles-->
+<!--begin::Content-->
+<div class="content"></div>
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <!--begin::Entry-->
+  <div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+      <!--begin::Profile Personal Information-->
+      <div class="d-flex flex-row">
+        <%- partial('./profileAside.ejs') %>
+        <!--begin::Content-->
+        <div class="flex-row-fluid ml-lg-8">
+          <!--begin::Card-->
+          <div class="card card-custom card-stretch">
+            <!--begin::Header-->
+            <div class="card-header py-3">
+              <div class="card-title align-items-start flex-column">
+                <h3 class="card-label font-weight-bolder text-dark">Personal Information</h3>
+                <span class="text-muted font-weight-bold font-size-sm mt-1">Update your personal informaiton</span>
+              </div>
+              <div class="card-toolbar">
+                <button type="reset" class="btn btn-secondary d-lg-none" id="kt_subheader_mobile_toggle">Cancel</button>
+              </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Form-->
+            <form class="form" id="update_student_profile_form">
+              <!--begin::Body-->
+              <div class="card-body">
+                <div class="row">
+                  <label class="col-xl-3"></label>
+                  <div class="col-lg-9 col-xl-6">
+                    <h5 class="font-weight-bold mb-6">User Info</h5>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Avatar</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <div class="image-input image-input-outline" id="kt_profile_avatar"
+                      style="background-image: url(/media/users/blank.png)">
+                      <div class="image-input-wrapper">
+                      </div>
+                      <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                        data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                        <i class="fa fa-pen icon-sm text-muted"></i>
+                        <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
+                        <input type="hidden" name="profile_avatar_remove" />
+                      </label>
+                      <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                        data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                      </span>
+                      <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                        data-action="remove" data-toggle="tooltip" title="Remove avatar">
+                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                      </span>
+                    </div>
+                    <span class="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-xl-3"></label>
+                  <div class="col-lg-9 col-xl-6">
+                    <h5 class="font-weight-bold mt-10 mb-6">Contact Info</h5>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Address Line 1</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="line1"
+                      placeholder="Address Line 1" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Address Line 2</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="line2"
+                      placeholder="Address Line 2" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">City</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="city"
+                      placeholder="City" />
+                  </div>
+                </div>
+                <!-- <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">State</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="state"
+                      placeholder="State" />
+                  </div>
+                </div> -->
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Country</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <select class="form-control form-control-lg form-control-solid" id="country" name="country">
+                      <option value="" disabled selected>Select country</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">State</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <select class="form-control form-control-lg form-control-solid" id="state" name="state">
+                      <option value="" disabled selected>Select State</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Phone</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-solid h-auto py-5 pr-6" type="tel" maxlength="10"
+                      placeholder="mobile number" id="phone" name="phone" autocomplete="off" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-xl-3 col-lg-3 col-form-label text-right"></div>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" id="update_student_profile_submit" class="btn btn-success mr-2">Save
+                      Changes</button>
+                  </div>
+                </div>
+              </div>
+              <!--end::Body-->
+            </form>
+            <!--end::Form-->
+          </div>
+        </div>
+        <!--end::Content-->
+      </div>
+      <!--end::Profile Personal Information-->
+    </div>
+    <!--end::Container-->
+  </div>
+  <!--end::Entry-->
+</div>
+<!--end::Content-->
+<!--begin::Page Scripts(used by this page)-->
+<script src="/js/intlTelInput.js"></script>
+<script src="/js/pages/custom/profile/updateStudentProfile.js"></script>
+<!--end::Page Scripts-->

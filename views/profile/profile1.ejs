@@ -1,0 +1,147 @@
+<div class="row">
+  <div class="col">
+    <h2> Your Profile </h2>
+  </div>
+  <div class="col">
+    <a class="btn btn-secondary float-right" href="/home">Back</a>
+  </div>
+</div>
+
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change Password</h5>
+        <button type="button" class="close" id="closeChangePassModal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="changePasswordForm">
+          <div class="form-group">
+            <label for="old-password" class="col-form-label">Old Password</label>
+            <input type="password" class="form-control" id="oldPassword">
+          </div>
+          <div class="form-group">
+            <label for="new-password" class="col-form-label">New Password</label>
+            <input type="password" class="form-control" id="newPassword">
+          </div>
+          <div class="form-group">
+            <label for="confirm-password" class="col-form-label">Confirm New Password</label>
+            <input type="password" class="form-control" id="confirmPassword">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="changePassSubmit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <label>Name : <span id="lblName"> </span></label>
+</div>
+<div>
+  <label>Email : <span id="lblEmail"></span></label>
+</div>
+<div class="mt-5">
+  <p><a href="#" data-toggle="modal" data-target="#changePasswordModal"><u>Click here</u></a> to Change Password</p>
+  <a class="btn btn-primary" id="updateProfileBtn">Update Profile</a>
+  <a class="btn btn-secondary" id="meetingHistoryBtn">Meeting History</a>
+  <a class="btn btn-info" id="myAccountBtn">Account Details</a>
+</div>
+
+<script>
+
+  $(document).ready(async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = '/';
+    }
+
+    $(".loader").show();
+    await getProfileData();
+    $(".loader").hide();
+
+    $("#changePassSubmit").click(function (event) {
+      event.preventDefault();
+      changePassword();
+    });
+
+    function getProfileData() {
+      return $.ajax(' /api/profile', {
+        method: 'GET',
+        async: true,
+        contentType: 'application/json',
+        processData: false,
+        headers: getRequestHeaders(),
+        success: function (response) {
+          $("#lblName").html(response.first_name + " " + response.last_name);
+          $("#lblEmail").html(response.email);
+          if (response.role === PROVIDER) {
+            $('#updateProfileBtn').attr('href', "/profile/provider/update");
+            $('#meetingHistoryBtn').attr('href', "/provider/meeting-history");
+            $("#myAccountBtn").attr('href', "/profile/provider/my-account");
+          } else if (response.role === STUDENT) {
+            $('#updateProfileBtn').attr('href', "/profile/user/update");
+            $('#meetingHistoryBtn').attr('href', "/user/meeting-history");
+            $("#myAccountBtn").attr('href', "/profile/user/my-account");
+          }
+        },
+      })
+    }
+
+    function changePassword() {
+      if (!$('#oldPassword').val()) {
+        return $.notify('Old Password is required', { type: 'danger' });
+      }
+
+      if (!$('#newPassword').val()) {
+        return $.notify('New Password is required', { type: 'danger' });
+      }
+
+      if (!$('#confirmPassword').val()) {
+        return $.notify('Confirm password is required', { type: 'danger' });
+      }
+      if ($('#newPassword').val() !== $('#confirmPassword').val()) {
+        return $.notify('Passwords do not match', 'error');
+      }
+
+      if ($('#newPassword').val() === $('#oldPassword').val()) {
+        return $.notify('Old Password and New Password is Same', 'error');
+      }
+      $(".loader").show();
+      $.ajax(`/api/change-password`, {
+        method: 'POST',
+        async: true,
+        contentType: 'application/json',
+        processData: false,
+        headers: getRequestHeaders(),
+        data: JSON.stringify({
+          password: $('#newPassword').val(),
+          currentPassword: $('#oldPassword').val()
+        }),
+        success: function (response) {
+          if (response.status) {
+            $('#closeChangePassModal').click();
+            $('#oldPassword').val("");
+            $('#newPassword').val("");
+            $('#confirmPassword').val("");
+            setTimeout(() => {
+              $(".loader").hide();
+              $.notify(response.message, "success");
+            }, 800);
+          } else {
+            setTimeout(() => {
+              $(".loader").hide();
+              $.notify(response.message, "error");
+            }, 800);
+          }
+        }
+      })
+    }
+  })
+</script>

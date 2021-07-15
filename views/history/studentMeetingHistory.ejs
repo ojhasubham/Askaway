@@ -1,0 +1,160 @@
+<!--begin::Content-->
+<div class="content"></div>
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <!--begin::Entry-->
+  <div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+      <!--begin::Dashboard-->
+      <!--begin::Row-->
+      <div class="row">
+        <div class="col-xl-12">
+          <!--begin::Advance Table Widget 10-->
+          <div class="card card-custom gutter-b card-stretch">
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+              <h3 class="card-title align-items-start flex-column">
+                <span class="card-label font-weight-bolder text-dark">Meeting History</span>
+              </h3>
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body py-0">
+              <!--begin::Table-->
+              <div class="table-responsive">
+                <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_4">
+                  <thead>
+                    <tr class="text-left">
+                      <th class="px-0">No.</th>
+                      <th style="min-width: 150px;">Topic</th>
+                      <th style="min-width: 150px;">Start Date & Time</th>
+                      <th>Duration</th>
+                      <th style="min-width: 150px;">Provider Name</th>
+                      <th>Charge Duration</th>
+                      <th style="min-width: 100px;">Hourly Rate</th>
+                      <th style="min-width: 100px;">CHarge</th>
+                      <th>Payment Status</th>
+                      <th class="text-center" colspan="3">Recordings</th>
+                      <th>Receipt</th>
+                    </tr>
+                  </thead>
+                  <tbody id="meeting_history_tbody">
+                    <!--meeting history listing-->
+                  </tbody>
+                </table>
+              </div>
+              <!--end::Table-->
+            </div>
+            <!--end::Body-->
+          </div>
+          <!--end::Advance Table Widget 10-->
+        </div>
+      </div>
+      <!--end::Row-->
+      <!--end::Dashboard-->
+    </div>
+    <!--end::Container-->
+  </div>
+  <!--end::Entry-->
+</div>
+<!--end::Content-->
+<!--begin::Receipt Format-->
+<div class="d-none">
+  <div id="receipt" class="bg-white shadow-none" style="color: black;">
+    <h4 style="text-shadow: none;">Receipt - <span class="receiptDate">-</span></h4>
+    <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgb(0, 0, 0);">
+    <div class="d-flex" style="justify-content: space-between;">
+      <div>
+        <h3 style="text-shadow: none;">
+          Asknanswr, Inc.
+        </h3>
+        <p class="mb-0" style="text-shadow: none;">
+          2353 berkshire lane,
+        </p>
+        <p class="mb-0" style="text-shadow: none;">
+          north Brunswick,NJ 08902,US
+        </p>
+        <a href="/" class="mb-0 text-primary" style="text-shadow: none;">
+          Asknanswr.com
+        </a>
+      </div>
+      <div style="display: flex; align-items: flex-end;">
+        <div>
+          <p class="mb-0" style="text-shadow: none;">
+            <b>Date:</b> <span class="receiptDate">-</span>
+          </p>
+          <p class="mb-0" style="text-shadow: none;">
+            <b>Order #:</b> <span class="receiptOrderNo">-</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgb(0, 0, 0);">
+    <p class="mb-0" style="text-shadow: none;">
+      <b>Sold To:</b> <span class="receiptPartyName">-</span>
+    </p>
+    <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgb(0, 0, 0);">
+    <table class="table text-dark">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Ordered</th>
+          <th>Charge Duration(min.)</th>
+          <th>Hourly Rate</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody id="receiptItemsTbody">
+        <tr>
+          <td class="w-50">-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Subtotal</td>
+          <td class="receiptSubtotal">-</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Tax*</td>
+          <td class="receiptTax">-</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total Paid</td>
+          <td class="receiptTotal">-</td>
+        </tr>
+      </tfoot>
+    </table>
+    <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgb(0, 0, 0);">
+    <p class="mb-0" style="text-shadow: none;">
+      *For any users charged VAT, the Tax amount is calculated on the Subtotal, not the Total Amount.
+    </p>
+    <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgb(0, 0, 0);">
+    <p class="mb-0" style="text-shadow: none;">
+      If you have any questions about this receipt please contact out <a class="text-primary"
+        href="/contact-support">support team</a>.
+    </p>
+    <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid rgb(0, 0, 0);">
+  </div>
+</div>
+<!--end::Receipt Format-->
+<!--begin::Page Scripts(used by this page)-->
+<script>
+  const PAYMENT_PENDING = +'<%= PAYMENT_PENDING %>';
+  const PAYMENT_PAID = +'<%= PAYMENT_PAID %>';
+</script>
+<script src="/js/html2pdf.bundle.min.js"></script>
+<script src="/js/pages/custom/history/studentMeetingHistory.js"></script>
+<!--end::Page Scripts-->

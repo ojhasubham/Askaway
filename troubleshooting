@@ -1,0 +1,13 @@
+# Find listening ports
+lsof -i :1337
+#or
+netstat -tulpn | grep LISTEN 
+
+# Sendgrid error
+
+#API Key does not start with “SG.” SendGrid
+#Make sure you have followed the below steps
+
+echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+echo "sendgrid.env" >> .gitignore
+source ./sendgrid.env

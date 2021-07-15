@@ -1,0 +1,101 @@
+module.exports.routes = {
+  // "/": "UserController.authPage",
+  "/auth/:page": "UserController.authPage",
+  "/forgot-password/verify/:id": "UserController.forgetPasswordVerifyPage",
+  "/profile/change-password": "UserController.changePasswordPage",
+  "/profile/provider/update": "UserController.updateProviderProfilePage",
+  "/profile/user/update": "UserController.updateStudentProfilePage",
+  "/provider/meeting-history": "MeetingController.providerMeetingHistoryPage",
+  "/user/meeting-history": "MeetingController.studentMeetingHistoryPage",
+  "/providers": "UserController.providersPage",
+  "/p/:providerid": "UserController.providerProfile",
+  "/home": "UserController.homePage",
+  "/home1": "UserController.homePage1",
+  "/verify/:token": "UserController.verifyAccount",
+
+  "/schedule-meeting/:id": "MeetingController.scheduleMeetingPage",
+  "/profile/user/my-account": "MeetingController.studentMyAccountPage",
+  "/profile/provider/my-account": "MeetingController.providerMyAccountPage",
+  "/meetings/:meetingId/:token/:action": "MeetingController.confirmMeetingPage",
+  "/provider/:providerId/ratings": "MeetingController.providerRatingsPage",
+
+  "/messages": "MessageController.messagesPage",
+
+  "GET /api/profile": "UserController.getProfile",
+  "PUT /api/profile": "UserController.updateProfile",
+  "POST /api/login": "UserController.login",
+  "POST /api/signup": "UserController.signup",
+  "POST /api/forgot-password/verify/:token": "UserController.updateForgetPassword",
+  "POST /api/forgot-password": "UserController.forgetPassword",
+  "POST /api/change-password": "UserController.changePassword",
+  "POST /api/profile-pic": "UserController.uploadProfilePic",
+  "DELETE /api/profile-pic": "UserController.deleteProfilePic",
+  "GET /api/file/profile-media": "UserController.getFileProfileMedia",
+  "GET /api/provider-list": "UserController.getProviderList",
+
+  "GET /api/meetings/:providerUserId": "MeetingController.getMeetings",
+  "POST /api/meeting/:userId": "MeetingController.createScheduledMeeting",
+  "DELETE /api/meeting/:meetingId": "MeetingController.deleteMeeting",
+  "GET /api/provider-transactions": "MeetingController.getProviderTransactions",
+  "GET /api/meeting-history": "MeetingController.getMeetingHistory",
+  "GET /api/upcoming-meetings": "MeetingController.getUpcomingMeetings",
+  "GET /api/meetings/rating/pending": "MeetingController.getPendingRatingMeetings",
+  "POST /api/meeting/:meetingId/rating": "MeetingController.addMeetingRating",
+
+  "POST /api/stripe-token": "MeetingController.createStripeToken",
+  "POST /api/stripe-customer": "MeetingController.createStripeCustomer",
+  "GET /api/stripe-customer": "MeetingController.getStripeCustomer",
+  "GET /api/stripe-account": "MeetingController.getStripeAccount",
+  "PUT /api/stripe-account": "MeetingController.updateStripeAccount",
+  "POST /api/stripe-account/bank": "MeetingController.addStripeAccountBank",
+  "GET /api/stripe-account/bank": "MeetingController.getStripeAccountBanks",
+  "PUT /api/stripe-account/bank/default": "MeetingController.setDefaultStripeAccountBank",
+  "DELETE /api/stripe-account/bank": "MeetingController.deleteStripeAccountBank",
+  "POST /api/stripe-customer/card": "MeetingController.addStripeCustomerCard",
+  "GET /api/stripe-customer/card": "MeetingController.getStripeCustomerCards",
+  "PUT /api/stripe-customer/card/default": "MeetingController.setDefaultStripeCustomerCard",
+  "DELETE /api/stripe-customer/card": "MeetingController.deleteStripeCustomerCard",
+  "POST /api/redeem-balance": "MeetingController.providerRedeemBalance",
+  "GET /api/file/meeting-media": "MeetingController.getFileMeetingMedia",
+  
+  "POST /api/messages": "MessageController.sendNewMessage",
+  "GET /api/messages": "MessageController.getMessagesList",
+  "POST /api/messages/:messageId": "MessageController.sendMessage",
+  "GET /api/messages/:messageId": "MessageController.getMessages",
+  "POST /api/messages/upload": "MessageController.uploadAttachment",
+  "GET /api/file/messages-media": "MessageController.getFileMessageMedia",
+  
+  "POST /webhook/meetings": "MeetingController.zoomWebhookMeetings",
+  "POST /webhook/recordings": "MeetingController.zoomWebhookRecordings",
+
+  "PATCH /cron/providerTransfer": "PatchController.providerTransfer",
+  "PATCH /cron/providerUserTypeChange": "PatchController.providerUserTypeChange",
+  "PATCH /cron/sendMeetingConfirmMail": "PatchController.sendMeetingConfirmMail",
+  "PATCH /cron/sendUpcomingMeetingMail": "PatchController.sendUpcomingMeetingMail",
+  "PATCH /cron/saveProvidersList": "PatchController.saveProvidersList",
+
+  "/auth/google/login": "PassportController.googleAuthLogin",
+  "/auth/google/register/:role": "PassportController.googleAuthRegister",
+  "/auth/google/callback": "PassportController.googleCallback",
+
+  "/auth/facebook/login": "PassportController.facebookAuth",
+  "/auth/facebook/callback": "PassportController.facebookCallback",
+
+  // begin: admin Routes
+  "/admin/auth/:page": "AdminController.authPage",
+  "POST /api/admin/login": "AdminController.login",
+  "/admin/home": "AdminController.homePage",
+  "GET /api/admin/users": "AdminController.getAllUsers",
+  "POST /api/admin/user/changeStatus": "AdminController.changeUserStatus",
+  "/admin/user": "AdminController.userPage",
+  "POST /api/admin/resend-verifymail": "AdminController.resendVerificationMail",
+
+  // end: admin Routes
+
+  // begin: common Routes
+  "/": "CommonController.homePage",
+  "/about": "CommonController.aboutPage",
+  "/team": "CommonController.teamPage",
+  "/contact": "CommonController.contactPage",
+  // end: common Routes
+};

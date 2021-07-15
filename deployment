@@ -1,0 +1,19 @@
+#After getting the AWS instance, install node
+
+sudo yum update
+
+sudo yum install -y gcc-c++ make
+
+curl -sL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
+
+sudo yum install -y nodejs
+
+# install git
+
+sudo yum install git
+
+# check which branh is latest
+git branch
+
+# Take the latest code
+git pull

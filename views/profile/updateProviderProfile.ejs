@@ -1,0 +1,395 @@
+<!--begin::Page Custom Styles(used by this page)-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="/styles/intlTelInput.css">
+<!--end::Page Custom Styles-->
+<!--begin::Content-->
+<div class="content"></div>
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <!--begin::Entry-->
+  <div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+      <!--begin::Profile Personal Information-->
+      <div class="d-flex flex-row">
+        <%- partial('./profileAside.ejs') %>
+        <!--begin::Content-->
+        <div class="flex-row-fluid ml-lg-8">
+          <!--begin::Card-->
+          <div class="card card-custom card-stretch">
+            <!--begin::Header-->
+            <div class="card-header py-3">
+              <div class="card-title align-items-start flex-column">
+                <h3 class="card-label font-weight-bolder text-dark">Personal Information</h3>
+                <span class="text-muted font-weight-bold font-size-sm mt-1">Update your personal informaiton</span>
+              </div>
+              <div class="card-toolbar">
+                <button type="reset" class="btn btn-secondary d-lg-none" id="kt_subheader_mobile_toggle">Cancel</button>
+              </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Form-->
+            <form class="form" id="update_provider_profile_form">
+              <!--begin::Body-->
+              <div class="card-body">
+                <div class="row">
+                  <label class="col-xl-3"></label>
+                  <div class="col-lg-9 col-xl-6">
+                    <h5 class="font-weight-bold mb-6">Provider Info</h5>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Avatar</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <div class="image-input image-input-outline" id="kt_profile_avatar"
+                      style="background-image: url(/media/users/blank.png)">
+                      <div class="image-input-wrapper">
+                      </div>
+                      <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                        data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                        <i class="fa fa-pen icon-sm text-muted"></i>
+                        <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
+                        <input type="hidden" name="profile_avatar_remove" />
+                      </label>
+                      <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                        data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                      </span>
+                      <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                        data-action="remove" data-toggle="tooltip" title="Remove avatar">
+                        <i class="ki ki-bold-close icon-xs text-muted"></i>
+                      </span>
+                    </div>
+                    <span class="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Profile Summary</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <textarea class="form-control form-control-lg form-control-solid" name="summary" id="summary"
+                      rows="3" placeholder="Profile Summary"></textarea>
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Company Name</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="companyName"
+                      placeholder="Company Name" />
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right" for="basic-url">
+                    Linked In profile link
+                  </label>
+                  <div class="input-group col-lg-9 col-xl-6 d-flex ">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="linkedInUrl"
+                      placeholder="Profile link" id="basic-url" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Blog URL</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="blogUrl"
+                      placeholder="Blog URL" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Personal Website</label>
+                  <div class="input-group col-lg-9 col-xl-6">
+                    <!-- <div class="input-group-prepend">
+                      <span class="input-group-text pr-0">http://www.</span>
+                    </div> -->
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="website"
+                      placeholder="Personal Website" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Keywords for search</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid tagify" name='keywords'
+                      placeholder='type...' />
+                    <div class="mt-3">
+                      <a href="javascript:;" id="keywords_remove"
+                        class="btn btn-sm btn-light-primary font-weight-bold">Remove keywords</a>
+                    </div>
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Last 4 digit fo the SSN (Social Security
+                    Number)</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="id_number"
+                      placeholder="SSN number" />
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Date of Birth</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <div class="input-group date">
+                      <input type="date" name="dob" class="form-control form-control-lg form-control-solid" />
+                    </div>
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Hourly Rate</label>
+                  <div class="input-group col-lg-9 col-xl-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="currency">USD</span>
+                    </div>
+                    <input type="text" class="form-control form-control-lg form-control-solid" name="rate"
+                      placeholder="Hourly Rate" />
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Categories</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid tagify" name="cat"
+                      placeholder='type...' />
+                    <!-- <select class="form-control form-control-lg form-control-solid h-100 selectpicker" name="cat"
+                      id="cat" multiple="multiple">
+                      <option selected value="" disabled>Select Categories</option>
+                      <% categories.forEach(function(item){ %>
+                      <option value="<%= item.id %>"><%= item.name %></option>
+                      <%  }); %>
+                    </select> -->
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Sub Categories</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid tagify" name="subCat"
+                      placeholder='type...' />
+                    <!-- <select class="form-control form-control-lg form-control-solid h-100 selectpicker" name="subCat"
+                      id="subCat" multiple="multiple">
+                      <option selected value="" disabled>Select Sub Categories</option>
+                      <% categories.forEach(function(item){
+                        item.subCategories.map((subCat) => { %>
+                      <option catId="<%= item.id %>" class="<%= item.id %>" value="<%= subCat.id %>"><%= subCat.name %>
+                      </option>
+                      <% })
+                      }); %>
+                    </select> -->
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Time Slots for monday</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" class="btn btn-sm btn-light-primary font-weight-bold" data-target="mon"
+                      id="addSlotBtn">Add
+                      Slot</button>
+                    <hr>
+                    <div class="col-md-12" id="monTimeSlotDiv"></div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Time Slots for Tuesday</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" class="btn btn-sm btn-light-primary font-weight-bold" data-target="tue"
+                      id="addSlotBtn">Add
+                      Slot</button>
+                    <hr>
+                    <div class="col-md-12" id="tueTimeSlotDiv"></div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Time Slots for Wednesday</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" class="btn btn-sm btn-light-primary font-weight-bold" data-target="wed"
+                      id="addSlotBtn">Add
+                      Slot</button>
+                    <hr>
+                    <div class="col-md-12" id="wedTimeSlotDiv"></div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Time Slots for Thursday</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" class="btn btn-sm btn-light-primary font-weight-bold" data-target="thu"
+                      id="addSlotBtn">Add
+                      Slot</button>
+                    <hr>
+                    <div class="col-md-12" id="thuTimeSlotDiv"></div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Time Slots for Friday</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" class="btn btn-sm btn-light-primary font-weight-bold" data-target="fri"
+                      id="addSlotBtn">Add
+                      Slot</button>
+                    <hr>
+                    <div class="col-md-12" id="friTimeSlotDiv"></div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Time Slots for Saturday</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" class="btn btn-sm btn-light-primary font-weight-bold" data-target="sat"
+                      id="addSlotBtn">Add
+                      Slot</button>
+                    <hr>
+                    <div class="col-md-12" id="satTimeSlotDiv"></div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Time Slots for Sunday</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" class="btn btn-sm btn-light-primary font-weight-bold" data-target="sun"
+                      id="addSlotBtn">Add
+                      Slot</button>
+                    <hr>
+                    <div class="col-md-12" id="sunTimeSlotDiv"></div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">leave Dates</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" class="btn btn-sm btn-light-primary font-weight-bold" id="addLeaveBtn">Add
+                      Leave</button>
+                    <hr>
+                    <div class="col-md-12" id="leavesDiv"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-xl-3"></label>
+                  <div class="col-lg-9 col-xl-6">
+                    <h5 class="font-weight-bold mt-10 mb-6">Contact Info</h5>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Address Line 1</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="line1"
+                      placeholder="Address Line 1" />
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Address Line 2</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="line2"
+                      placeholder="Address Line 2" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">City</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="city"
+                      placeholder="City" />
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <!-- <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">State</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="state"
+                      placeholder="State" />
+                  </div>
+                </div> -->
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Country</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <select class="form-control form-control-lg form-control-solid" id="country" name="country">
+                      <option value="" disabled selected>Select country</option>
+                    </select>
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">State</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <select class="form-control form-control-lg form-control-solid" id="state" name="state">
+                      <option value="" disabled selected>Select State</option>
+                    </select>
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Postal Code</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="postal_code"
+                      placeholder="Postal Code" />
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label text-right">Phone</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input class="form-control form-control-solid h-auto py-5 pr-6" type="tel" maxlength="10"
+                      placeholder="mobile number" id="phone" name="phone" autocomplete="off" />
+                  </div>
+                  <label style="color: red;">*</label>
+                </div>
+                <div class="form-group row">
+                  <div class="col-xl-3 col-lg-3 col-form-label text-right"></div>
+                  <div class="col-lg-9 col-xl-6">
+                    <button type="button" class="btn btn-success mr-2" id="update_provider_profile_submit">Save
+                      Changes</button>
+                  </div>
+                </div>
+              </div>
+              <!--end::Body-->
+            </form>
+            <!--end::Form-->
+          </div>
+        </div>
+        <!--end::Content-->
+      </div>
+      <!--end::Profile Personal Information-->
+    </div>
+    <!--end::Container-->
+  </div>
+  <!--end::Entry-->
+</div>
+<!--end::Content-->
+<!--begin::Modal-->
+<div class="modal fade" id="meetingsModal" data-backdrop="static" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdrop" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Scheduled Meetings found on selected leave days</h5>
+        <button type="button" class="close" id="closeMeetingsModal" data-dismiss="modal" aria-label="Close">
+          <i aria-hidden="true" class="ki ki-close"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-info">Below listed meetings are Scheduled on your selected leave days. Please delete the meetings
+          first or update the leave days.</p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Date & Time</th>
+              <th>duration</th>
+            </tr>
+          </thead>
+          <tbody id="meetingsTbody">
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="delete_meetings_submit" class="btn btn-danger">Delete meetings and continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end::Modal-->
+<!--begin::Page Scripts(used by this page)-->
+<script src="/js/intlTelInput.js"></script>
+<script>
+  const categories = <%-JSON.stringify(categories) %>;
+  const countries = <%-JSON.stringify(countries) %>;
+</script>
+<script src="/js/pages/custom/profile/updateProviderProfile.js"></script>
+<!--end::Page Scripts-->

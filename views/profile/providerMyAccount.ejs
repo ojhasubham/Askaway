@@ -1,0 +1,129 @@
+<!--begin::Content-->
+<div class="content"></div>
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <!--begin::Entry-->
+  <div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+      <!--begin::Profile Personal Information-->
+      <div class="d-flex flex-row">
+        <%- partial('./profileAside.ejs') %>
+        <!--begin::Content-->
+        <div class="flex-row-fluid ml-lg-8">
+          <!--begin::Card-->
+          <div class="card card-custom card-stretch">
+            <!--begin::Header-->
+            <div class="card-header py-3">
+              <div class="card-title align-items-start flex-column">
+                <h3 class="card-label font-weight-bolder text-dark">Saved Banks</h3>
+                <span class="text-muted font-weight-bold font-size-sm mt-1">Update your Banks details</span>
+              </div>
+              <div class="card-toolbar">
+                <button type="button" class="btn btn-success mr-2" id="add_bank_btn">Add New Bank Account</button>
+                <button type="button" class="btn btn-secondary d-lg-none"
+                  id="kt_subheader_mobile_toggle">Cancel</button>
+              </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Form-->
+            <form class="form">
+              <!--begin::Body-->
+
+              <div class="card-body">
+                <p>
+                  <span class="text-dark font-weight-bold font-size-h4 mb-0">Account Balance : </span>
+                  <span class="font-weight-bold text-hover-primary font-size-h4 mb-0" id="account_balance"></span>
+                </p>
+                <div class="d-none alert alert-custom alert-light-danger fade show mb-10" id="activate_acc_msg_div"
+                  role="alert">
+                  <div class="alert-icon">
+                    <span class="svg-icon svg-icon-3x svg-icon-danger">
+                      <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Info-circle.svg-->
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                        height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <rect x="0" y="0" width="24" height="24"></rect>
+                          <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"></circle>
+                          <rect fill="#000000" x="11" y="10" width="2" height="7" rx="1"></rect>
+                          <rect fill="#000000" x="11" y="7" width="2" height="2" rx="1"></rect>
+                        </g>
+                      </svg>
+                      <!--end::Svg Icon-->
+                    </span>
+                  </div>
+                  <div class="alert-text font-weight-bold" id="activate_acc_msg"></div>
+                </div>
+                <div id="banks_content"></div>
+              </div>
+              <!--end::Body-->
+            </form>
+            <!--end::Form-->
+          </div>
+        </div>
+        <!--end::Content-->
+      </div>
+      <!--end::Profile Personal Information-->
+    </div>
+    <!--end::Container-->
+  </div>
+  <!--end::Entry-->
+</div>
+<!--end::Content-->
+<!--begin::Add New Bank Account Modal-->
+<div class="modal fade" id="add_bank_account_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Bank Account Details</h5>
+        <button type="button" class="close" id="close_add_bank_account" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="add_bank_account_form">
+        <div class="modal-body">
+          <div>
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label for="account holder name">Account Holder Name<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="account_holder_name">
+                <small class="text-danger error" id="bank_account[account_holder_name]"></small>
+              </div>
+              <div class="form-group col-md-6 col-sm-12">
+                <label for="routing or IFSC code"><span class="routingText">Routing Number</span><span
+                    class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="routing_number">
+                <small class="text-danger error" id="bank_account[routing_number]"></small>
+              </div>
+              <div class="form-group col-md-6 col-sm-12">
+                <label for="bank account number">Bank Account Number<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="account_number">
+                <small class="text-danger error" id="bank_account[account_number]"></small>
+              </div>
+              <div class="form-group col-md-6 col-sm-12">
+                <label for="confirm routing or IFSC code">Confirm <span class="routingText">Routing Number</span><span
+                    class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="c_routing_number">
+              </div>
+              <div class="form-group col-md-6 col-sm-12">
+                <label for="confirm  bank account number">Confirm Bank Account Number<span
+                    class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="c_account_number">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="submit" id="add_bank_account_submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--end::Add New Bank Account Modal-->
+<!--begin::Page Scripts(used by this page)-->
+<script>
+  const chargePer = <%= chargePer %>;
+</script>
+<script src="/js/pages/custom/profile/providerMyAccount.js"></script>
+<!--end::Page Scripts-->

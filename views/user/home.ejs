@@ -1,0 +1,108 @@
+<!-- rateYo CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <div class="for-student">
+    <%- partial('../pages/searchProviderSection.ejs') %>
+  </div>
+  <div class="content"></div>
+  <!--begin::Entry-->
+  <div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+      <!--begin::Dashboard-->
+      <!--begin::Row-->
+      <div class="row">
+        <div class="col-xl-12">
+          <!--begin::Advance Table Widget 10-->
+          <div class="card card-custom gutter-b card-stretch">
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+              <h3 class="card-title align-items-start flex-column">
+                <span class="card-label font-weight-bolder text-dark">Upcoming Meetings</span>
+              </h3>
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body py-0">
+              <!--begin::Table-->
+              <div class="table-responsive">
+                <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_4">
+                  <thead>
+                    <tr class="text-left">
+                      <th style="min-width: 110px" class="pl-0">No.</th>
+                      <th style="min-width: 110px">Topic</th>
+                      <th style="min-width: 110px">Date & Time</th>
+                      <th style="min-width: 120px">Duration</th>
+                      <th style="min-width: 120px">Status</th>
+                      <th style="min-width: 120px" id="upcoming_meeting_action_th" class="text-center d-none">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="upcoming_meetings_tbody">
+                    <!--upcoming meeting listing-->
+                  </tbody>
+                </table>
+              </div>
+              <!--end::Table-->
+            </div>
+            <!--end::Body-->
+          </div>
+          <!--end::Advance Table Widget 10-->
+        </div>
+      </div>
+      <!--end::Row-->
+      <!--end::Dashboard-->
+    </div>
+    <!--end::Container-->
+  </div>
+  <!--end::Entry-->
+</div>
+<!--end::Content-->
+<!--begin::Add Meeting Rating Modal-->
+<div class="modal fade" id="add_meeting_rating_modal" tabindex="-1" data-backdrop="static" role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Meeting Rating</h5>
+        <button type="button" class="close" id="close_add_meeting_rating" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="add_meeting_rating_form">
+        <div class="modal-body">
+          <div>
+            <div class="row">
+              <div class="form-group col-md-12">
+                <div class="d-flex justify-content-between align-items-cente">
+                  <span class="text-dark-75 font-weight-bolder mr-2">Meeting Topic : </span>
+                  <span class="text-muted text-hover-primary" id="meeting_topic"></span>
+                </div>
+              </div>
+              <div class="form-group col-md-12">
+                <div>
+                  <label for="account holder name">Rating out of 5</label>
+                </div>
+                <div id="rating"></div>
+              </div>
+              <div class="form-group col-md-12">
+                <label>Rating Comments</label>
+                <textarea class="form-control" name="ratingComments"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" id="add_meeting_rating_submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--end::Add Meeting Rating Modal-->
+<!--begin::Page Scripts(used by this page)-->
+<script src="/js/pages/custom/home/home.js"></script>
+<!-- rateYo JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<!--end::Page Scripts-->
